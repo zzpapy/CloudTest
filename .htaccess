@@ -1,16 +1,16 @@
 <VirtualHost *:80>
-    ServerName 82.165.103.74.tld
-    ServerAlias www.82.165.103.74.tld
+    ServerName  sas.papy-dev.fr.tld
+    ServerAlias www. sas.papy-dev.fr.tld
 
     DocumentRoot /var/www/html/CloudTest/public
     DirectoryIndex /index.php
 
     <Directory /var/www/html/CloudTest/public>
-        AllowOverride None
-        Order Allow,Deny
+        AllowOverride All
+        Require all granted
         Allow from All
 
-        FallbackResource /index.php
+        
 
         # Use the front controller as index file. It serves as a fallback solution when
     # every other rewrite/redirect fails (e.g. in an aliased environment without
