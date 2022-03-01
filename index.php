@@ -7,4 +7,4 @@
         $ip = $_SERVER['REMOTE_ADDR'];
     }
     var_dump($ip);
-    header("Location: http://sas.papy-dev.fr/CloudTest/public");
+    header("Location: http://sas.papy-dev.fr/CloudTest/public/");
