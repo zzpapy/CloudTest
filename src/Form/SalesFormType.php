@@ -7,14 +7,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SalesTypeFormType extends AbstractType
+class SalesFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('type')
-            ->add('CreatedAt')
-            ->add('User')
+            
         ;
     }
 
