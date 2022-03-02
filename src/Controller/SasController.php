@@ -16,12 +16,15 @@ class SasController extends AbstractController
     #[Route('/sas', name: 'app_sas')]
     public function index(Request $request,ManagerRegistry $doctrine): Response
     {
+        $response = new Response();
         if ($this->getUser()) {
             $sales = new Sales();
             $salesForm = $this->createForm(SalesFormType::class, $sales);
             $salesForm->handleRequest($request);
 
-            
+            $saless = $doctrine->getRepository(Sales::class)->findById($this->getUser()->getId());
+            $count = count($saless);
+            dump($count);
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
                 $entityManager = $doctrine->getManager();
                 $sales->setCreatedAt(new \DateTimeImmutable('NOW'));
@@ -31,20 +34,22 @@ class SasController extends AbstractController
                 $entityManager->flush($sales);
                 $date = $sales->getCreatedAt();
                 $date->format('d-m-Y H:i:s');
-                // $saless = $doctrine->getRepository(sales::class)->findById($this->getUser()->getId());
-                // $response->setContent(json_encode([
-                //     "sales" => $sales->getType(),
-                //     "date" => $date,
-                //     "count" => $count,
-                //     "saless" => $saless
-                // ]));
-                // return $response;
+                $saless = $doctrine->getRepository(sales::class)->findById($this->getUser()->getId());
+                dump($sales);
+                $response->setContent(json_encode([
+                    "sales" => $sales->getType(),
+                    "date" => $date,
+                    "count" => $count,
+                    "saless" => $saless
+                ]));
+                return $response;
 
             }
         }
         return $this->render('sas/index.html.twig', [
             'controller_name' => 'SasController',
-            "salesForm" => $salesForm->createView()
+            "salesForm" => $salesForm->createView(),
+            "count" => $count
         ]);
     }
 }
