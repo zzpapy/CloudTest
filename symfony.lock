@@ -324,7 +324,7 @@
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "5.4.*",
+            "version": "5.4",
             "ref": "3cd216a4d007b78d8554d44a5b1c0a446dab24fb"
         },
         "files": [
@@ -531,7 +531,7 @@
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "5.4.*",
+            "version": "5.4",
             "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
         },
         "files": [
