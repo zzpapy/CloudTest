@@ -53,10 +53,7 @@ class SasController extends AbstractController
             ]);
         }
         else{
-            return $this->render('security/login.html.twig', [
-                'controller_name' => 'SasController',
-               
-            ]);
+            return $this->redirectToRoute('app_login');
         }
     }
 }
