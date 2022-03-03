@@ -17,14 +17,14 @@ class SasController extends AbstractController
     public function index(Request $request,ManagerRegistry $doctrine): Response
     {
         $response = new Response();
-        $sales = new Sales();
-        $salesForm = $this->createForm(SalesFormType::class, $sales);
-        $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
-        $count = count($saless);
         if ($this->getUser()) {
+            $salesForm = $this->createForm(SalesFormType::class, $sales);
+            $sales = new Sales();
             $salesForm->handleRequest($request);
             $dateSearch = (new \DateTimeImmutable('NOW 00:00:00.0'));
-            $value = new \DateTimeImmutable('2022-03-02');           
+            $value = new \DateTimeImmutable('2022-03-02');
+            $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
+            $count = count($saless);
             dump($dateSearch , $dateSearch, $count);
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
                 $entityManager = $doctrine->getManager();
@@ -46,11 +46,17 @@ class SasController extends AbstractController
                 return $response;
 
             }
+            return $this->render('sas/index.html.twig', [
+                'controller_name' => 'SasController',
+                "salesForm" => $salesForm->createView(),
+                "count" => $count
+            ]);
         }
-        return $this->render('sas/index.html.twig', [
-            'controller_name' => 'SasController',
-            "salesForm" => $salesForm->createView(),
-            "count" => $count
-        ]);
+        else{
+            return $this->render('security/login.html.twig', [
+                'controller_name' => 'SasController',
+               
+            ]);
+        }
     }
 }
