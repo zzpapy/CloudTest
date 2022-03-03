@@ -18,8 +18,8 @@ class SasController extends AbstractController
     {
         $response = new Response();
         if ($this->getUser()) {
-            $salesForm = $this->createForm(SalesFormType::class, $sales);
             $sales = new Sales();
+            $salesForm = $this->createForm(SalesFormType::class, $sales);
             $salesForm->handleRequest($request);
             $dateSearch = (new \DateTimeImmutable('NOW 00:00:00.0'));
             $value = new \DateTimeImmutable('2022-03-02');
