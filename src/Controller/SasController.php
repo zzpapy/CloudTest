@@ -17,9 +17,9 @@ class SasController extends AbstractController
     public function index(Request $request,ManagerRegistry $doctrine): Response
     {
         $response = new Response();
+        $salesForm = $this->createForm(SalesFormType::class, $sales);
         if ($this->getUser()) {
             $sales = new Sales();
-            $salesForm = $this->createForm(SalesFormType::class, $sales);
             $salesForm->handleRequest($request);
             $dateSearch = (new \DateTimeImmutable('NOW 00:00:00.0'));
             $value = new \DateTimeImmutable('2022-03-02');
