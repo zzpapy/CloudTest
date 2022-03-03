@@ -19,12 +19,12 @@ class SasController extends AbstractController
         $response = new Response();
         $sales = new Sales();
         $salesForm = $this->createForm(SalesFormType::class, $sales);
+        $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
+        $count = count($saless);
         if ($this->getUser()) {
             $salesForm->handleRequest($request);
             $dateSearch = (new \DateTimeImmutable('NOW 00:00:00.0'));
-            $value = new \DateTimeImmutable('2022-03-02');
-            $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
-            $count = count($saless);
+            $value = new \DateTimeImmutable('2022-03-02');           
             dump($dateSearch , $dateSearch, $count);
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
                 $entityManager = $doctrine->getManager();
