@@ -21,21 +21,22 @@ class SasController extends AbstractController
             $sales = new Sales();
             $salesForm = $this->createForm(SalesFormType::class, $sales);
             $salesForm->handleRequest($request);
-
-            $saless = $doctrine->getRepository(Sales::class)->findById($this->getUser()->getId());
+            $dateSearch = (new \DateTimeImmutable('NOW 00:00:00.0'));
+            $value = new \DateTimeImmutable('2022-03-02');
+            $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
             $count = count($saless);
-            dump($count);
+            dump($dateSearch , $dateSearch, $count);
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
                 $entityManager = $doctrine->getManager();
-                $sales->setCreatedAt(new \DateTimeImmutable('NOW'));
+                $sales->setCreatedAt($dateSearch);
                 $sales->setUser($this->getUser());
                 dump($this->getUser());
                 $entityManager->persist($sales);
                 $entityManager->flush($sales);
                 $date = $sales->getCreatedAt();
                 $date->format('d-m-Y H:i:s');
-                $saless = $doctrine->getRepository(sales::class)->findById($this->getUser()->getId());
-                dump($sales);
+                $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
+                $count = count($saless);
                 $response->setContent(json_encode([
                     "sales" => $sales->getType(),
                     "date" => $date,
