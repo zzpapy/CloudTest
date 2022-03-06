@@ -44,7 +44,8 @@ class SasController extends AbstractController
                 $entityManager->flush($sales);
                 $date = $sales->getCreatedAt();
                 $date->format('d-m-Y H:i:s');
-                
+                $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
+                $countSalesDay = count($daySales);
                 $response->setContent(json_encode([
                     "sales" => $sales->getType(),
                     "date" => $date,
@@ -57,7 +58,7 @@ class SasController extends AbstractController
             return $this->render('sas/index.html.twig', [
                 'controller_name' => 'SasController',
                 "salesForm" => $salesForm->createView(),
-                "count" => $count
+                "count" => $countSalesDay
             ]);
         }
         else{
