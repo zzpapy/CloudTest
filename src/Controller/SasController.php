@@ -59,7 +59,7 @@ class SasController extends AbstractController
                 'controller_name' => 'SasController',
                 "salesForm" => $salesForm->createView(),
                 "count" => $countSalesDay,
-                "monthSales" => $monthSales
+                "monthSales" => count($monthSales)
             ]);
         }
         else{
