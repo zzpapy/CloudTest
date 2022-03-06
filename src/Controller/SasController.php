@@ -26,7 +26,6 @@ class SasController extends AbstractController
         $startDate = $startDate->modify('first day of this month')->setTime(00, 00, 00);
         
         $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
-        $count = count($monthSales);
 
         $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
         $countSalesDay = count($daySales);
@@ -46,11 +45,13 @@ class SasController extends AbstractController
                 $date->format('d-m-Y H:i:s');
                 $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
                 $countSalesDay = count($daySales);
+                $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
+                $count = count($monthSales);
                 $response->setContent(json_encode([
                     "sales" => $sales->getType(),
                     "date" => $date,
                     "count" => $countSalesDay,
-                    "monthSales" => $monthSales
+                    "monthSales" => count($monthSales)
                 ]));
                 return $response;
 
