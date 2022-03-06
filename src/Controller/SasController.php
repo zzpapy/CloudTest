@@ -58,7 +58,8 @@ class SasController extends AbstractController
             return $this->render('sas/index.html.twig', [
                 'controller_name' => 'SasController',
                 "salesForm" => $salesForm->createView(),
-                "count" => $countSalesDay
+                "count" => $countSalesDay,
+                "monthSales" => $monthSales
             ]);
         }
         else{
