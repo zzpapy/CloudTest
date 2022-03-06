@@ -3,17 +3,17 @@
 {% block title %}Hello SasController!{% endblock %}
 
 {% block body %}
-<nav class="homeConatainer sb-sidenav-dark">
+<nav class="homeConatainer navbar navbar-expand-lg navbar-light bg-dark">
     <div class="color sb-nav-link-icon">SAS</div>
-    <div>{{ 'now'|date('d - m -Y') }}</div>
+    <div class="color">{{ 'now'|date('d - m -Y') }}</div>
     <div class="sb-nav-link-icon"><a class="color" href={{ path('app_logout') }}> DECONNEXION</a></div>  
 </nav>
 <div class="homeConatainer">
+    <div class="number">SAS :<span class="result">{{count}}</span></div>
     {{form_start(salesForm,{'attr': {'id':"vente","class" :"homeConatainer" }})}}
-    {{ form_row(salesForm.type,{'attr': {"class" :"type" }}) }}
-     <button class="vente btn type" data-url={{ path('app_sas')}}>Ok</button>
+    {{ form_row(salesForm.type,{'label': 'produit','attr': {"class" :"type" }}) }}
+     <button class="vente btn-primary type" data-url={{ path('app_sas')}}>Ok</button>
     {{form_end(salesForm)}}
+    <div class="number">SAS/MOIS :<span class="monthSales"> {{monthSales}}</span></div>
 </div>
-<div>SAS :<span class="result"> {{count}}</span></div>
-<div>SAS/MOIS :<span class="monthSales"> {{monthSales}}</span></div>
 {% endblock %}

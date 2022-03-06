@@ -18,20 +18,20 @@ class SasController extends AbstractController
     {
         $sales = new Sales();
         
-        $id = $this->getUser()->getId();
-        
-        $salesForm = $this->createForm(SalesFormType::class, $sales);
-        $startDate = new \DateTimeImmutable('NOW');
-        $dateSearch = (new \DateTimeImmutable('NOW'));
-        $startDate = $startDate->modify('first day of this month')->setTime(00, 00, 00);
-        
-        $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
-
-        $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
-        $countSalesDay = count($daySales);
-        dump($daySales);
         $response = new Response();
         if ($this->getUser()) {
+            $id = $this->getUser()->getId();
+            
+            $salesForm = $this->createForm(SalesFormType::class, $sales);
+            $startDate = new \DateTimeImmutable('NOW');
+            $dateSearch = (new \DateTimeImmutable('NOW'));
+            $startDate = $startDate->modify('first day of this month')->setTime(00, 00, 00);
+            
+            $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
+    
+            $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
+            $countSalesDay = count($daySales);
+            dump($daySales);
             $salesForm->handleRequest($request);
            
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {

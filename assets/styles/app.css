@@ -1,3 +1,34 @@
+/* @import "~bootstrap/scss/bootstrap"; */
 body {
     background-color: lightgray;
+    font-weight: bold;
+}
+.homeConatainer{
+    display: flex ;
+    justify-content: space-between;
+    padding: 2em;
+    margin: 0 auto;
+}
+.color{
+    color: white;
+    font-weight: bold;
+}
+.result{
+    text-align: center;
+    font-size: x-large;
+}
+.type{
+    padding: 1em !important;
+    margin: 1em !important;
+    
+}
+.number{
+    flex: 1;
+    align-self: center;
+    text-align: center;
+}
+.login{
+    width: 25%;
+    text-align: center;
+    margin: 12em auto;
 }
