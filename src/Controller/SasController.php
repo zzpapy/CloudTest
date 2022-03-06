@@ -29,7 +29,7 @@ class SasController extends AbstractController
         $count = count($monthSales);
 
         $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
-        $count = count($daySales);
+        $countSalesDay = count($daySales);
         dump($daySales);
         $response = new Response();
         if ($this->getUser()) {
@@ -48,7 +48,7 @@ class SasController extends AbstractController
                 $response->setContent(json_encode([
                     "sales" => $sales->getType(),
                     "date" => $date,
-                    "count" => $count,
+                    "count" => $countSalesDay,
                     "monthSales" => $monthSales
                 ]));
                 return $response;
