@@ -45,22 +45,48 @@ class SalesRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Sales[] Returns an array of Sales objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Sales[] Returns an array of Sales objects
+    */
+    
+    public function salesByMonth($value,$startDate)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
+        $startDate = $startDate->setTime(0, 0, 0);
+        $endDate = $startDate->modify('last day of this month')->setTime(23, 59, 59);
+        $qb = $this->createQueryBuilder('s')
+            ->andWhere('s.User = :val')
+            ->setParameter('end', $endDate)
+            ->setParameter('start', $startDate)
+            ->andWhere('s.CreatedAt >= :start')
+            ->andWhere('s.CreatedAt <= :end')
             ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+            ->orderBy('s.id', 'ASC');
+            $result = $qb->getQuery()->getResult();
+            return $result;
         ;
     }
+    
+     /**
+    * @return Sales[] Returns an array of Sales objects
     */
+    
+    public function salesByDay($value,$startDate)
+    {
+        $startDate = $startDate->setTime(0, 0, 0);
+        $endDate = $startDate->setTime(23, 59, 59);
+        $qb = $this->createQueryBuilder('s')
+            ->andWhere('s.User = :val')
+            ->setParameter('end', $endDate)
+            ->setParameter('start', $startDate)
+            ->andWhere('s.CreatedAt >= :start')
+            ->andWhere('s.CreatedAt <= :end')
+            ->setParameter('val', $value)
+            ->orderBy('s.id', 'ASC');
+            $result = $qb->getQuery()->getResult();
+            return $result;
+        ;
+    }
+    
 
     /*
     public function findOneBySomeField($value): ?Sales
@@ -73,4 +99,6 @@ class SalesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
 }

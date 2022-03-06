@@ -16,32 +16,40 @@ class SasController extends AbstractController
     #[Route('/sas', name: 'app_sas')]
     public function index(Request $request,ManagerRegistry $doctrine): Response
     {
+        $sales = new Sales();
+        
+        $id = $this->getUser()->getId();
+        
+        $salesForm = $this->createForm(SalesFormType::class, $sales);
+        $startDate = new \DateTimeImmutable('NOW');
+        $dateSearch = (new \DateTimeImmutable('NOW'));
+        $startDate = $startDate->modify('first day of this month')->setTime(00, 00, 00);
+        
+        $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
+        $count = count($monthSales);
+
+        $daySales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$dateSearch);
+        $count = count($monthSales);
+        dump($daySales);
         $response = new Response();
         if ($this->getUser()) {
-            $sales = new Sales();
-            $salesForm = $this->createForm(SalesFormType::class, $sales);
             $salesForm->handleRequest($request);
-            $dateSearch = (new \DateTimeImmutable('NOW 00:00:00.0'));
-            $value = new \DateTimeImmutable('2022-03-02');
-            $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
-            $count = count($saless);
-            dump($dateSearch , $dateSearch, $count);
+           
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
                 $entityManager = $doctrine->getManager();
                 $sales->setCreatedAt($dateSearch);
                 $sales->setUser($this->getUser());
-                dump($this->getUser());
+               
                 $entityManager->persist($sales);
                 $entityManager->flush($sales);
                 $date = $sales->getCreatedAt();
                 $date->format('d-m-Y H:i:s');
-                $saless = $doctrine->getRepository(Sales::class)->findBy(["User"=>$this->getUser()->getId(),"CreatedAt"=>$dateSearch]);
-                $count = count($saless);
+                
                 $response->setContent(json_encode([
                     "sales" => $sales->getType(),
                     "date" => $date,
                     "count" => $count,
-                    "saless" => $saless
+                    "monthSales" => $monthSales
                 ]));
                 return $response;
 

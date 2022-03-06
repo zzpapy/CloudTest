@@ -6,7 +6,7 @@ $(".vente").on('click', (e) => {
     let url = $(e.target).data('url')
     $.post(url, $( "#vente").serialize(),function (json) {
         $( ".result" ).html( json.count );
-        console.log(json.date.date,json)
+        console.log(json)
     },"json" ).done( function (result) { 
         // console.log(result)
     })
