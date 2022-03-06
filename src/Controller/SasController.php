@@ -28,8 +28,8 @@ class SasController extends AbstractController
         $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
         $count = count($monthSales);
 
-        $daySales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$dateSearch);
-        $count = count($monthSales);
+        $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
+        $count = count($daySales);
         dump($daySales);
         $response = new Response();
         if ($this->getUser()) {
