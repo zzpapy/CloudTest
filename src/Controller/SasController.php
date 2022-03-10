@@ -74,7 +74,8 @@ class SasController extends AbstractController
                     "sales" => $sales->getType(),
                     "date" => $date,
                     "count" => $countSalesDay,
-                    "monthSales" => count($monthSales)
+                    "monthSales" => count($monthSales),
+                    "tabSales" => $tabSales
                 ]));
                 return $response;
 
@@ -83,7 +84,8 @@ class SasController extends AbstractController
                 'controller_name' => 'SasController',
                 "salesForm" => $salesForm->createView(),
                 "count" => $countSalesDay,
-                "monthSales" => count($monthSales)
+                "monthSales" => count($monthSales),
+                "tabSales" => $tabSales
             ]);
         }
         else{
