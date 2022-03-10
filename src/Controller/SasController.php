@@ -28,12 +28,35 @@ class SasController extends AbstractController
             $startDate = $startDate->modify('first day of this month')->setTime(00, 00, 00);
             
             $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
-    
-            $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
-            $countSalesDay = count($daySales);
-            dump($daySales);
-            $salesForm->handleRequest($request);
+
+            $allSales = $doctrine->getRepository(Sales::class)->findBY(["User" => $this->getUser()->getId()]);
+            
+            if(count($allSales)  != 0 ){
+                $start  = $allSales[0]->getCreatedAt()->format('Y-m-d');
+                $tabSales = [];
+                $tabSales[$start] = [];
+                foreach ($allSales as $key => $value) {
+                    if($value->getCreatedAt()->format('Y-m-d') == $start){
+                        // $tabSales[$start] = $value->getCreatedAt()->format('Y-m-d');
+                       array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
+                    }
+                    else{
+                        $start  = $value->getCreatedAt()->format('Y-m-d');
+                        $tabSales[$start] = [];
+                        array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
+                    }
+                }
+                $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
+                $countSalesDay = count($daySales);
+                
+
+            }
+            else{
+                $monthSales = [];
+                $countSalesDay = 0;
+            }
            
+           $salesForm->handleRequest($request);
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
                 $entityManager = $doctrine->getManager();
                 $sales->setCreatedAt($dateSearch);
@@ -47,13 +70,13 @@ class SasController extends AbstractController
                 $countSalesDay = count($daySales);
                 $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
                 $count = count($monthSales);
-                $response->setContent(json_encode([
-                    "sales" => $sales->getType(),
-                    "date" => $date,
-                    "count" => $countSalesDay,
-                    "monthSales" => count($monthSales)
-                ]));
-                return $response;
+                // $response->setContent(json_encode([
+                //     "sales" => $sales->getType(),
+                //     "date" => $date,
+                //     "count" => $countSalesDay,
+                //     "monthSales" => count($monthSales)
+                // ]));
+                // return $response;
 
             }
             return $this->render('sas/index.html.twig', [

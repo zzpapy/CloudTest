@@ -13,7 +13,7 @@ class SalesFormType extends AbstractType
     {
         $builder
             ->add('type')
-            
+            ->setMethod('POST')
         ;
     }
 
