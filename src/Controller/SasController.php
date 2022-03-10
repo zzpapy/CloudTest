@@ -70,13 +70,13 @@ class SasController extends AbstractController
                 $countSalesDay = count($daySales);
                 $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
                 $count = count($monthSales);
-                // $response->setContent(json_encode([
-                //     "sales" => $sales->getType(),
-                //     "date" => $date,
-                //     "count" => $countSalesDay,
-                //     "monthSales" => count($monthSales)
-                // ]));
-                // return $response;
+                $response->setContent(json_encode([
+                    "sales" => $sales->getType(),
+                    "date" => $date,
+                    "count" => $countSalesDay,
+                    "monthSales" => count($monthSales)
+                ]));
+                return $response;
 
             }
             return $this->render('sas/index.html.twig', [
