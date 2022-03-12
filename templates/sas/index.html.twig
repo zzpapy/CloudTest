@@ -8,7 +8,7 @@
     <div class="color">{{ 'now'|date('d - m -Y') }}</div>
     <div class="sb-nav-link-icon"><a class="color" href={{ path('app_logout') }}> DECONNEXION</a></div>  
 </nav>
-<div class="homeConatainer">
+<div class="homeConatainer" id="homeConatainer">
     <div class="number">SAS :<span class="result">{{count}}</span></div>
     {{form_start(salesForm,{'attr': {'id':"vente","class" :"homeConatainer" }})}}
     {{ form_row(salesForm.type,{'label': 'produit','attr': {"class" :"type" }}) }}
@@ -16,6 +16,8 @@
     {{form_end(salesForm)}}
     <div class="number">SAS/MOIS :<span class="monthSales"> {{monthSales}}</span></div>
 </div>
-<canvas id="myChart"></canvas>
+<div id="can">
+    <canvas id="myChart"></canvas>
+</div>
 
 {% endblock %}

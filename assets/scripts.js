@@ -7,7 +7,50 @@ $(".vente").on('click', (e) => {
     $.post(url, $( "#vente").serialize(),function (json) {
         $( ".result" ).html( json.count );
         $( ".monthSales" ).html( json.monthSales );
-        console.log(json)
+        console.log(Object.keys(json.tabSales))
+        datas = (Object.values(json.tabSales)[0].length,Object.values(json.tabSales)[1].length)
+
+        var canvas = document.getElementById("myChart");        
+        canvas.remove()
+        var newDiv = document.createElement("canvas");
+        newDiv.id = "myChart"
+        var currentDiv = document.getElementById('can');
+        currentDiv.appendChild(newDiv, currentDiv);
+        var canvas = document.getElementById("myChart")      
+        var myChart = new Chart(canvas, {
+            type: 'bar',
+            data: {
+                dataIndex: 'center',
+                labels: [Object.keys(json.tabSales)],
+                datasets: [{
+                    label: Object.keys(json.tabSales)[0],
+                    data: [Object.values(json.tabSales)[0].length]
+                },
+                {
+                    label: Object.keys(json.tabSales)[1],
+                    data: [Object.values(json.tabSales)[1].length]
+                }
+                ],
+            options: {
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        ticks: {
+                        padding: 20
+                        }
+                    }],
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: 'rgb(255, 99, 132)'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
     },"json" ).done( function (result) { 
         // console.log(result)
     })
@@ -29,16 +72,22 @@ window.addEventListener('DOMContentLoaded', event => {
        
     // }
 
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
+    
+});
+
+var canvas = document.getElementById("myChart");
+        // var ctx = canvas.getContext('2d')
+        // ctx.clearRect(0,0,canvas.width,canvas.height)
+        
+    var myChart = new Chart(canvas, {
+        type: 'bar',
         data: {
-            labels: ["Group 1", "Group 2", "Group 3"],
+            labels: ["toto","tata","titi"],
             datasets: [{
-                label: 'Groups',
-                data: [12, 19, 3]
+                label: 'date',
+                data: [22,33,54]
             }]
         }
     });
-});
 
+    

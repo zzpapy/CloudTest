@@ -58,6 +58,7 @@ class SasController extends AbstractController
            
            $salesForm->handleRequest($request);
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
+
                 $entityManager = $doctrine->getManager();
                 $sales->setCreatedAt($dateSearch);
                 $sales->setUser($this->getUser());
@@ -70,6 +71,23 @@ class SasController extends AbstractController
                 $countSalesDay = count($daySales);
                 $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
                 $count = count($monthSales);
+
+                $allSales = $doctrine->getRepository(Sales::class)->findBY(["User" => $this->getUser()->getId()]);
+                $start  = $allSales[0]->getCreatedAt()->format('Y-m-d');
+                $tabSales = [];
+                $tabSales[$start] = [];
+                foreach ($allSales as $key => $value) {
+                    if($value->getCreatedAt()->format('Y-m-d') == $start){
+                        // $tabSales[$start] = $value->getCreatedAt()->format('Y-m-d');
+                       array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
+                    }
+                    else{
+                        $start  = $value->getCreatedAt()->format('Y-m-d');
+                        $tabSales[$start] = [];
+                        array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
+                    }
+                }
+                
                 $response->setContent(json_encode([
                     "sales" => $sales->getType(),
                     "date" => $date,
