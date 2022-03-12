@@ -1,5 +1,10 @@
 // 
 // Scripts
+
+// import { values } from "core-js/core/array";
+
+// import { values } from "core-js/core/array";
+
 // 
 $(".vente").on('click', (e) => {
     e.preventDefault()
@@ -8,7 +13,14 @@ $(".vente").on('click', (e) => {
         $( ".result" ).html( json.count );
         $( ".monthSales" ).html( json.monthSales );
         console.log(Object.keys(json.tabSales))
-        datas = (Object.values(json.tabSales)[0].length,Object.values(json.tabSales)[1].length)
+        datas = (Object.values(json.tabSales))
+        values =[]
+        datas.forEach((item, index) => {
+            values = [...values,item.length]
+            console.log(item) //value
+            console.log(index) //index
+          })
+          console.log(values)
 
         var canvas = document.getElementById("myChart");        
         canvas.remove()
@@ -23,12 +35,8 @@ $(".vente").on('click', (e) => {
                 dataIndex: 'center',
                 labels: Object.keys(json.tabSales),
                 datasets: [{
-                    label: Object.keys(json.tabSales)[0],
-                    data: [Object.values(json.tabSales)[0].length]
-                },
-                {
-                    label: Object.keys(json.tabSales)[1],
-                    data: [Object.values(json.tabSales)[1].length]
+                    label: "sas",
+                    data: values
                 }
                 ]
         }
