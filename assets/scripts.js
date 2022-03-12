@@ -21,7 +21,7 @@ $(".vente").on('click', (e) => {
             type: 'bar',
             data: {
                 dataIndex: 'center',
-                labels: [Object.keys(json.tabSales)],
+                labels: Object.keys(json.tabSales),
                 datasets: [{
                     label: Object.keys(json.tabSales)[0],
                     data: [Object.values(json.tabSales)[0].length]
@@ -30,25 +30,7 @@ $(".vente").on('click', (e) => {
                     label: Object.keys(json.tabSales)[1],
                     data: [Object.values(json.tabSales)[1].length]
                 }
-                ],
-            options: {
-                scales: {
-                    xAxes: [{
-                        type: 'time',
-                        ticks: {
-                        padding: 20
-                        }
-                    }],
-                    plugins: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                color: 'rgb(255, 99, 132)'
-                            }
-                        }
-                    }
-                }
-            }
+                ]
         }
     });
     },"json" ).done( function (result) { 
