@@ -87,7 +87,7 @@ class SasController extends AbstractController
                         array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
                     }
                 }
-                
+
                 $response->setContent(json_encode([
                     "sales" => $sales->getType(),
                     "date" => $date,
@@ -98,6 +98,7 @@ class SasController extends AbstractController
                 return $response;
 
             }
+           
             return $this->render('sas/index.html.twig', [
                 'controller_name' => 'SasController',
                 "salesForm" => $salesForm->createView(),
@@ -109,5 +110,58 @@ class SasController extends AbstractController
         else{
             return $this->redirectToRoute('app_login');
         }
+    }
+
+    #[Route('/chart', name: 'app_chart')]
+    public function chart(Request $request,ManagerRegistry $doctrine): Response
+    {
+        $sales = new Sales();
+        
+        $response = new Response();
+        if ($this->getUser()) {
+            $id = $this->getUser()->getId();
+            
+            $salesForm = $this->createForm(SalesFormType::class, $sales);
+            $startDate = new \DateTimeImmutable('NOW');
+            $dateSearch = (new \DateTimeImmutable('NOW'));
+            $startDate = $startDate->modify('first day of this month')->setTime(00, 00, 00);
+            
+            $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
+
+            $allSales = $doctrine->getRepository(Sales::class)->findBY(["User" => $this->getUser()->getId()]);
+            
+            if(count($allSales)  != 0 ){
+                $start  = $allSales[0]->getCreatedAt()->format('Y-m-d');
+                $tabSales = [];
+                $tabSales[$start] = [];
+                foreach ($allSales as $key => $value) {
+                    if($value->getCreatedAt()->format('Y-m-d') == $start){
+                        // $tabSales[$start] = $value->getCreatedAt()->format('Y-m-d');
+                       array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
+                    }
+                    else{
+                        $start  = $value->getCreatedAt()->format('Y-m-d');
+                        $tabSales[$start] = [];
+                        array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
+                    }
+                }
+                $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
+                $countSalesDay = count($daySales);
+                
+
+            }
+            else{
+                $monthSales = [];
+                $countSalesDay = 0;
+            }
+        };
+        $response->setContent(json_encode([
+            "sales" => $sales->getType(),
+            // "date" => $date,
+            "count" => $countSalesDay,
+            "monthSales" => count($monthSales),
+            "tabSales" => $tabSales
+        ]));
+        return $response;
     }
 }
