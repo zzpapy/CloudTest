@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}ACCEUIL{% endblock %}
 
 {% block body %}
 <nav class="homeConatainer navbar navbar-expand-lg navbar-light bg-dark">
@@ -14,5 +14,6 @@
         <div class="sb-nav-link-icon"><a class="color" href="{{ path('app_login') }}">CONNEXION</a></div>                
     {% endif %}
 </nav>
+ <img src={{asset('images/smiley.jpg')}}
 
 {% endblock %}
