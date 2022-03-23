@@ -1,10 +1,10 @@
 import React from 'react';
  
- const Items = ({ id, poster }) => (
-     <div key={id} className="card col-md-4 homeConatainer" >
+ const Items = ({ id, poster, onClick }) => (
+     <div key={id} className="card col-md-4 homeConatainer" onClick={onClick}>
          <div className="homeConatainer">
              <p>{id}</p>
-             <img src={poster} />
+             <img id={id} src={poster} />
          </div>
      </div>
  );
