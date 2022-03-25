@@ -20,7 +20,7 @@ export function getFilmsFromApiWithSearchedText (text,page) {
       return 'https://image.tmdb.org/t/p/w300' + name
 
     }
-    else return '../Images/cine.jpg'
+    else return '../images/cine.jpg'
   }
 
   export function getActor(id){
