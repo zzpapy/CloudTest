@@ -91,11 +91,14 @@ class App extends React.Component {
     render() {
         if(this.state["entries"].results != undefined && Object.keys(this.state.showCrawl).length === 0 && this.state.inSearch === false){
 
+            console.log(this.state["entries"].total_results)
             return (
             <div>
                 <div className="input">
                     <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
                 </div>
+                <p>resultats : {this.state["entries"].total_results}</p>
+                <h1>Films du moment :</h1>
                 <div className="pagin">
                     <ReactPaginate
                         breakLabel="..."
@@ -157,11 +160,13 @@ class App extends React.Component {
             );
         }
         else if(this.state.inSearch && this.state.keySearch.length >0){
+            console.log(this.state.search["total_results"])
             return(
             <div >               
                 <div className="input">
                     <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
                 </div>
+                    <p>resultats : {this.state.search["total_results"]}</p>
                 <div className="pagin">
                     <ReactPaginate
                         breakLabel="..."
