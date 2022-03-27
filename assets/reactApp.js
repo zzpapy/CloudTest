@@ -30,15 +30,17 @@ class App extends React.Component {
             });
         }
     keyUpHandler(refName, e) {
-        getFilmsFromApiWithSearchedText(e.target.value)
-            .then(res => res)
-            .then(data => {
-                this.setState({
-                    search : data,
-                    inSearch : true,
-                    keySearch: e.target.value
-                });
-            })
+        if(e.target.value.length > 0){
+            getFilmsFromApiWithSearchedText(e.target.value)
+                .then(res => res)
+                .then(data => {
+                    this.setState({
+                        search : data,
+                        inSearch : true,
+                        keySearch: e.target.value
+                    });
+                })
+        }
     }
     handlePageClick(event) {
         getNow(event.selected + 1)
@@ -51,6 +53,7 @@ class App extends React.Component {
         });
       };
       handleSearch(event) {
+         
         getFilmsFromApiWithSearchedText(this.state.keySearch,event.selected + 1)
         .then( response => response)
         .then(entries => {
@@ -62,32 +65,30 @@ class App extends React.Component {
       };
       handleMovie = (e) => {
           var id = e.target.id
-          console.log(this.state.inSearch, e.target)
+          var test = !this.state.inSearch ? false : true
           getFilmDetail (id)
             .then( response => response)
             .then(entries => {
-                console.log(entries)
                 this.setState(current => ({
                     showCrawl:  entries,
-                    inSearch : false
+                    // inSearch : false
                   }));
-                //   if(this.state.inSearch){
-                //     this.setState(current => ({
+                  if(this.state.inSearch){
+                    this.setState(current => ({
                         
-                //         inSearch : true
-                //       }));
-                //   }
+                        inSearch : true
+                      }));
+                  }
             })}
         reset = (e => {
-            console.log(this.state.inSearch)
+            var test = !this.state.inSearch ? true : false
             this.setState(current => ({
                 showCrawl:  {},
-                inSearch : true
+                // inSearch : test
               }));
         })
 
     render() {
-        console.log(this.state["entries"].results)
         if(this.state["entries"].results != undefined && Object.keys(this.state.showCrawl).length === 0 && this.state.inSearch === false){
 
             return (
@@ -140,7 +141,7 @@ class App extends React.Component {
             </div>
             );
         }
-        else if(Object.keys(this.state.showCrawl).length !== 0 && this.state.inSearch === false){
+        else if(Object.keys(this.state.showCrawl).length !== 0 && this.state.inSearch === false || Object.keys(this.state.showCrawl).length !== 0 && this.state.inSearch === true && this.state.keySearch.length > 0){
             return (
                 <div >
                <Film

@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', event => {
     
 });
 
-
+console.log($("#root"))
 $.post('chart', $( "#vente").serialize(),function (json) {
     $( ".result" ).html( json.count );
     $( ".monthSales" ).html( json.monthSales );
