@@ -92,7 +92,9 @@ class App extends React.Component {
 
             return (
                 <div>
-                    <div><input type="text" onKeyUp={this.handleLoginKeyUp} autoFocus ref="search" /></div>
+                    <div className="input">
+                        <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                    </div>
                 <div className=" homeConatainer">
                     {this.state["entries"].results.map(
                         ({ id, poster_path,original_title }) =>  (
@@ -155,7 +157,9 @@ class App extends React.Component {
         else if(this.state.inSearch && this.state.keySearch.length >0){
             return(
             <div >               
-                <div><input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/></div>
+                <div className="input">
+                    <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                </div> 
                 <div className=" homeConatainer">
                     {this.state.search["results"].map(
                         ({ id, poster_path,title }) =>  (
@@ -200,8 +204,8 @@ class App extends React.Component {
         }
         else{
             return (
-            <div>
-                <div><input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/></div>
+            <div className="input">
+                <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
             </div>
             );
         }
