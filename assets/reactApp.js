@@ -91,10 +91,31 @@ class App extends React.Component {
         if(this.state["entries"].results != undefined && Object.keys(this.state.showCrawl).length === 0 && this.state.inSearch === false){
 
             return (
-                <div>
-                    <div className="input">
-                        <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
-                    </div>
+            <div>
+                <div className="input">
+                    <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                </div>
+                <div className="pagin">
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="next >"
+                        onPageChange={this.handlePageClick.bind(this)}
+                        pageRangeDisplayed={5}
+                        pageCount={this.state["entries"].total_pages}
+                        previousLabel="< previous"
+                        renderOnZeroPageCount={null}
+                        breakClassName={'page-item'}
+                        breakLinkClassName={'page-link'}
+                        containerClassName={'pagination'}
+                        pageClassName={'page-item'}
+                        pageLinkClassName={'page-link'}
+                        previousClassName={'page-item'}
+                        previousLinkClassName={'page-link'}
+                        nextClassName={'page-item'}
+                        nextLinkClassName={'page-link'}
+                        activeClassName={'active'}
+                    />
+                </div>
                 <div className=" homeConatainer">
                     {this.state["entries"].results.map(
                         ({ id, poster_path,original_title }) =>  (
@@ -115,28 +136,8 @@ class App extends React.Component {
                         )
                     )}
                 </div>
-                <div className="pagin">
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel="next >"
-                    onPageChange={this.handlePageClick.bind(this)}
-                    pageRangeDisplayed={5}
-                    pageCount={this.state["entries"].total_pages}
-                    previousLabel="< previous"
-                    renderOnZeroPageCount={null}
-                    breakClassName={'page-item'}
-                    breakLinkClassName={'page-link'}
-                    containerClassName={'pagination'}
-                    pageClassName={'page-item'}
-                    pageLinkClassName={'page-link'}
-                    previousClassName={'page-item'}
-                    previousLinkClassName={'page-link'}
-                    nextClassName={'page-item'}
-                    nextLinkClassName={'page-link'}
-                    activeClassName={'active'}
-                />
-              </div>
-              </div>
+                
+            </div>
             );
         }
         else if(Object.keys(this.state.showCrawl).length !== 0 && this.state.inSearch === false){
@@ -159,25 +160,6 @@ class App extends React.Component {
             <div >               
                 <div className="input">
                     <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
-                </div> 
-                <div className=" homeConatainer">
-                    {this.state.search["results"].map(
-                        ({ id, poster_path,title }) =>  (
-                            <Items
-                                key={id}
-                                id={id}
-                                poster={getImageFromApi(poster_path) }
-                                onClick = {this.handleMovie}
-                            >
-                                {this.state.showCrawl[id] && (
-                                    
-                                    <div style={{ border: "1px black solid" }}>
-                                    {title}
-                                    </div>
-                                )}
-                            </Items>
-                        )
-                        )}
                 </div>
                 <div className="pagin">
                     <ReactPaginate
@@ -199,7 +181,27 @@ class App extends React.Component {
                         nextLinkClassName={'page-link'}
                         activeClassName={'active'}
                     />
+                </div> 
+                <div className=" homeConatainer">
+                    {this.state.search["results"].map(
+                        ({ id, poster_path,title }) =>  (
+                            <Items
+                                key={id}
+                                id={id}
+                                poster={getImageFromApi(poster_path) }
+                                onClick = {this.handleMovie}
+                            >
+                                {this.state.showCrawl[id] && (
+                                    
+                                    <div style={{ border: "1px black solid" }}>
+                                    {title}
+                                    </div>
+                                )}
+                            </Items>
+                        )
+                        )}
                 </div>
+                
             </div>)
         }
         else{
