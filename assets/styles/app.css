@@ -67,6 +67,7 @@ body {
   .pagination > li {
     list-style: none;
     border: 0.9px solid;
+    background-color: white;
   }
   .pagination > li > a,
   .pagination > li > span {
@@ -98,7 +99,7 @@ body {
       padding: 0px;
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
-    display: none!important;
+    /* display: none!important; */
   }
   .pagination > li:last-child > a,
   .pagination > li:last-child > span {
@@ -106,7 +107,7 @@ body {
     margin-right: 0;
     padding: 0px!important;
     border-top-right-radius: 4px;
-    display: none!important;
+    /* display: none!important; */
   }
   .film{
       margin-top: 5em;

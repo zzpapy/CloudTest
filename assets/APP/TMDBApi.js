@@ -32,12 +32,15 @@ export function getFilmsFromApiWithSearchedText (text,page) {
   }
 
 
-  export function getActorByName(name,page){
+  export async function getActorByName(name,page){
     
     const url = "https://api.themoviedb.org/3/search/person?query="+name+"&api_key="+API_TOKEN+"&page="+page+"&include_adult=false"
-    return fetch(url)
-        .then(res => res.json())
-        .catch(er => console.error(er))
+    try {
+      const res = await fetch(url);
+      return await res.json();
+    } catch (er) {
+      return console.error(er);
+    }
   }
 
   export function getNow(page){

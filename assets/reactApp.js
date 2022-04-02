@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate'
 import Items from './components/Items';
 import Film from './components/Film';
-import { getImageFromApi, getActor, getNow,getFilmDetail, getFilmsFromApiWithSearchedText } from './APP/TMDBApi'
+import ActorDetail from './components/ActorDetail';
+import Actor from './components/Actor';
+import { getActor, getImageFromApi, getActorByName, getNow,getFilmDetail, getFilmsFromApiWithSearchedText } from './APP/TMDBApi'
 import Loader from "react-loader-spinner"
  
 
@@ -11,12 +13,20 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.handleLoginKeyUp = this.keyUpHandler.bind(this, 'search');
+        this.handleActorKeyUp = this.keyUpHandlerActor.bind(this, 'searchActor');
+        
         this.state = {
             entries: [],
             showCrawl: {},
             search: [],
             inSearch: false,
-            keySearch: ""
+            inSearchActor: false,
+            keySearch: "",
+            keySearchActor: "",
+            now : false,
+            actor: false,
+            showActor :false,
+            showFilm : false
         };
     }
 
@@ -25,7 +35,8 @@ class App extends React.Component {
             .then( response => response)
             .then(entries => {                
                 this.setState({
-                    entries
+                    entries :entries,
+                    now : true
                 });
             });
         }
@@ -37,7 +48,28 @@ class App extends React.Component {
                     this.setState({
                         search : data,
                         inSearch : true,
-                        keySearch: e.target.value
+                        inSearchActor : false,
+                        keySearch: e.target.value,
+                        keySearchActor: "",
+                        actor : false,
+                        now : false
+                    });
+                })
+        }
+    }
+    keyUpHandlerActor(refName, e) {
+        if(e.target.value.length > 0){
+            getActorByName(e.target.value)
+                .then(res => res)
+                .then(data => {
+                    console.log(data)
+                    this.setState({
+                        search : data,
+                        inSearchActor : true,
+                        inSearch : false,
+                        keySearch: "",
+                        keySearchActor: e.target.value,
+                        actor: true
                     });
                 })
         }
@@ -69,8 +101,11 @@ class App extends React.Component {
           getFilmDetail (id)
             .then( response => response)
             .then(entries => {
+                console.log(entries, this.state.showActor)
                 this.setState(current => ({
                     showCrawl:  entries,
+                    showFilm : true,
+                    now : false,
                     // inSearch : false
                   }));
                   if(this.state.inSearch){
@@ -80,33 +115,60 @@ class App extends React.Component {
                       }));
                   }
             })}
+        
+            handleMovieActor = (e) => {
+                var id = e.target.id
+                var test = !this.state.inSearch ? false : true
+                console.log(e,e.target, id)
+                getActor (id)
+                  .then( response => response)
+                  .then(entries => {
+                      console.log(entries)
+                      this.setState(current => ({
+                          showCrawl:  entries,
+                          showActor : true
+                          // inSearch : false
+                        }));
+                        if(this.state.inSearchActor){
+                          this.setState(current => ({
+                              
+                              inSearchActor : true
+                            }));
+                        }
+                  })}
         reset = (e => {
-            var test = !this.state.inSearch ? true : false
+            var test = this.state.inSearch ? false : true
             this.setState(current => ({
                 showCrawl:  {},
-                // inSearch : test
-              }));
+                showActor : false,
+                showFilm : false,
+                now : test
+            }));
+            console.log(this.state)
         })
 
     render() {
-        if(this.state["entries"].results != undefined && Object.keys(this.state.showCrawl).length === 0 && this.state.inSearch === false){
-
-            console.log(this.state["entries"].total_results)
+        if(this.state.now && !this.state.inSearch && !this.state.inSearchActor){
+            console.log(this.state)
+            console.log(this.state["entries"].results != undefined && Object.keys(this.state.showCrawl).length === 0 && this.state.inSearch === false,this.state.inSearchActor)
             return (
             <div>
                 <div className="input">
                     <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
                 </div>
+                <div className="input">
+                    <input type="text" onKeyUp={this.handleActorKeyUp} ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
+                </div>                
                 <p>resultats : {this.state["entries"].total_results}</p>
                 <h1>Films du moment :</h1>
                 <div className="pagin">
                     <ReactPaginate
                         breakLabel="..."
-                        nextLabel="next >"
+                        nextLabel="Suivant >"
                         onPageChange={this.handlePageClick.bind(this)}
                         pageRangeDisplayed={5}
                         pageCount={this.state["entries"].total_pages}
-                        previousLabel="< previous"
+                        previousLabel="< Précédent"
                         renderOnZeroPageCount={null}
                         breakClassName={'page-item'}
                         breakLinkClassName={'page-link'}
@@ -130,12 +192,6 @@ class App extends React.Component {
                                 poster={getImageFromApi(poster_path) }
                                 onClick = {this.handleMovie}
                             >
-                                {this.state.showCrawl[id] && (
-                                    
-                                    <div style={{ border: "1px black solid" }}>
-                                    {title}
-                                    </div>
-                                )}
                             </Items>
                         )
                     )}
@@ -144,27 +200,15 @@ class App extends React.Component {
             </div>
             );
         }
-        else if(Object.keys(this.state.showCrawl).length !== 0 && this.state.inSearch === false || Object.keys(this.state.showCrawl).length !== 0 && this.state.inSearch === true && this.state.keySearch.length > 0){
-            return (
-                <div >
-               <Film
-                    key={this.state.showCrawl.id}
-                    id={this.state.showCrawl.id}
-                    film={this.state.showCrawl}
-                    poster={getImageFromApi(this.state.showCrawl.backdrop_path) }
-                    onClick = {this.reset}
-                >
-                    
-                </Film>
-              </div>
-            );
-        }
-        else if(this.state.inSearch && this.state.keySearch.length >0){
-            console.log(this.state.search["total_results"])
+        else if(this.state.inSearch && this.state.keySearch.length >0 && !this.state.actor && !this.state.showFilm){
+            console.log(this.state)
             return(
             <div >               
                 <div className="input">
                     <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                </div>
+                <div className="input">
+                    <input type="text" onKeyUp={this.handleActorKeyUp} ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
                 </div>
                     <p>resultats : {this.state.search["total_results"]}</p>
                 <div className="pagin">
@@ -197,18 +241,72 @@ class App extends React.Component {
                                 poster={getImageFromApi(poster_path) }
                                 onClick = {this.handleMovie}
                             >
-                                {this.state.showCrawl[id] && (
-                                    
-                                    <div style={{ border: "1px black solid" }}>
-                                    {title}
-                                    </div>
-                                )}
                             </Items>
                         )
                         )}
                 </div>
                 
             </div>)
+        }
+        else if(this.state.actor && !this.state.showActor){
+            console.log(this.state.search,this.state.showCrawl,this.state.keySearchActor, this.state.inSearchActor)
+            return(
+                <div >
+                 <div className="input">
+                    <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                </div>
+                <div className="input">
+                    <input type="text" onKeyUp={this.handleActorKeyUp} ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
+                </div>                
+                <p>resultats : {this.state.search.total_results}</p>
+                 <div className=" homeConatainer">
+                 {this.state.search["results"].map(
+                        ({ id, profile_path,name }) =>  (
+                            <Actor
+                                key={id}
+                                id={id}
+                                name={name}
+                                poster={getImageFromApi(profile_path) }
+                                onClick = {this.handleMovieActor}
+                            >
+                            </Actor>
+                        )
+                    )}
+                    </div>
+                 </div>
+            )
+        }
+        else if(this.state.showActor){
+           
+            console.log(this.state.showCrawl)
+            return (
+                <div >
+               <ActorDetail
+                    key={this.state.showCrawl.id}
+                    id={this.state.showCrawl.id}
+                    actor={this.state.showCrawl}
+                    poster={getImageFromApi(this.state.showCrawl.profile_path) }
+                    onClick = {this.reset}
+                >
+                    
+                </ActorDetail>
+              </div>
+            );
+        }
+        else if(this.state.showFilm){
+            return (
+                <div >
+               <Film
+                    key={this.state.showCrawl.id}
+                    id={this.state.showCrawl.id}
+                    film={this.state.showCrawl}
+                    poster={getImageFromApi(this.state.showCrawl.backdrop_path) }
+                    onClick = {this.reset}
+                >
+                    
+                </Film>
+              </div>
+            );
         }
         else{
             return (
