@@ -165,4 +165,14 @@ class SasController extends AbstractController
         ]));
         return $response;
     }
+
+    #[Route('/sas', name: 'app_sas')]
+    public function ajax(Request $request,ManagerRegistry $doctrine): Response
+    {
+        $response = new Response();
+        $response->setContent(json_encode([
+            "sales" => "test excell"
+        ]));
+        return $response;
+    }
 }
