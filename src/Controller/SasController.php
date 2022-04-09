@@ -57,6 +57,7 @@ class SasController extends AbstractController
             }
            
            $salesForm->handleRequest($request);
+           $tabSales = [];
             if ($salesForm->isSubmitted() && $salesForm->isValid()) {
 
                 $entityManager = $doctrine->getManager();
@@ -74,7 +75,7 @@ class SasController extends AbstractController
 
                 $allSales = $doctrine->getRepository(Sales::class)->findBY(["User" => $this->getUser()->getId()]);
                 $start  = $allSales[0]->getCreatedAt()->format('Y-m-d');
-                $tabSales = [];
+                
                 $tabSales[$start] = [];
                 foreach ($allSales as $key => $value) {
                     if($value->getCreatedAt()->format('Y-m-d') == $start){
