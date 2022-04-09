@@ -48,6 +48,10 @@ $(".vente").on('click', (e) => {
         });
 
     },"json" ).done( function (result) { 
+        var canvas = document.getElementById("loader"); 
+        if(canvas){
+            canvas.remove()
+        }       
         
     })
 })
