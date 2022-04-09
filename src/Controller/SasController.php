@@ -166,7 +166,7 @@ class SasController extends AbstractController
         return $response;
     }
 
-    #[Route('/sas', name: 'app_sas')]
+    #[Route('/ajax', name: 'app_ajax')]
     public function ajax(Request $request,ManagerRegistry $doctrine): Response
     {
         $response = new Response();
