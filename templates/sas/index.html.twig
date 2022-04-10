@@ -12,10 +12,12 @@
     {% endif %}
 </nav>
 <div class="homeConatainer" id="homeConatainer">
+    <div class="hidden pouce">
+        <i class="fa-solid fa-thumbs-up fa-5x"></i>
+    </div>
     <div class="number">SAS :<span class="result">{{count}}</span></div>
     {{form_start(salesForm,{'attr': {'id':"vente","class" :"homeConatainer" }})}}
-    {{ form_row(salesForm.type,{'label': 'produit','attr': {"class" :"type" }}) }}
-     <button class="vente btn-primary type" data-url={{ path('app_sas')}}>Ok</button>
+     <button class="vente but type" data-url={{ path('app_sas')}}><i class="fa-solid fa-hand-peace"></i></button>
     {{form_end(salesForm)}}
     <div class="number">SAS/MOIS :<span class="monthSales"> {{monthSales}}</span></div>
 </div>

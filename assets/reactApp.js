@@ -152,12 +152,12 @@ class App extends React.Component {
             console.log(this.state)
             console.log(this.state["entries"].results != undefined && Object.keys(this.state.showCrawl).length === 0 && this.state.inSearch === false,this.state.inSearchActor)
             return (
-            <div>
+            <div>                
                 <div className="input">
-                    <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                    <input type="text" onKeyUp={this.handleLoginKeyUp} placeholder="Recherche par film" ref="search" autoFocus defaultValue={this.state.keySearch}/>
                 </div>
                 <div className="input">
-                    <input type="text" onKeyUp={this.handleActorKeyUp} ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
+                    <input type="text" onKeyUp={this.handleActorKeyUp} placeholder="Recherche par acteur" ref="searchActor" defaultValue={this.state.keySearchActor}/>
                 </div>                
                 <p>resultats : {this.state["entries"].total_results}</p>
                 <h1>Films du moment :</h1>
@@ -168,7 +168,7 @@ class App extends React.Component {
                         onPageChange={this.handlePageClick.bind(this)}
                         pageRangeDisplayed={5}
                         pageCount={this.state["entries"].total_pages}
-                        previousLabel="< Précédent"
+                        previousLabel="< Précédent" 
                         renderOnZeroPageCount={null}
                         breakClassName={'page-item'}
                         breakLinkClassName={'page-link'}
@@ -205,10 +205,10 @@ class App extends React.Component {
             return(
             <div >               
                 <div className="input">
-                    <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                    <input type="text" onKeyUp={this.handleLoginKeyUp} placeholder="Recherche par film" ref="search" autoFocus defaultValue={this.state.keySearch}/>
                 </div>
                 <div className="input">
-                    <input type="text" onKeyUp={this.handleActorKeyUp} ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
+                    <input type="text" onKeyUp={this.handleActorKeyUp} placeholder="Recherche par acteur"ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
                 </div>
                     <p>resultats : {this.state.search["total_results"]}</p>
                 <div className="pagin">
@@ -253,10 +253,10 @@ class App extends React.Component {
             return(
                 <div >
                  <div className="input">
-                    <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                    <input type="text" onKeyUp={this.handleLoginKeyUp} placeholder="Recherche par film" ref="search" autoFocus defaultValue={this.state.keySearch}/>
                 </div>
                 <div className="input">
-                    <input type="text" onKeyUp={this.handleActorKeyUp} ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
+                    <input type="text" onKeyUp={this.handleActorKeyUp} placeholder="Recherche par acteur"ref="searchActor" autoFocus defaultValue={this.state.keySearchActor}/>
                 </div>                
                 <p>resultats : {this.state.search.total_results}</p>
                  <div className=" homeConatainer">
@@ -311,7 +311,7 @@ class App extends React.Component {
         else{
             return (
             <div className="input">
-                <input type="text" onKeyUp={this.handleLoginKeyUp} ref="search" autoFocus defaultValue={this.state.keySearch}/>
+                <input type="text" onKeyUp={this.handleLoginKeyUp} placeholder="Recherche par film" ref="search" autoFocus defaultValue={this.state.keySearch}/>
             </div>
             );
         }

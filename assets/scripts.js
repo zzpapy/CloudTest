@@ -6,12 +6,29 @@
 // import { values } from "core-js/core/array";
 
 // 
+
+function pouce(val,ret = null){
+    $( ".visible" ).animate({
+        opacity: val,
+        // left: "+=50",
+        // height: "toggle"
+      }, 1000, function() {
+        ret
+      });
+}
 $(".vente").on('click', (e) => {
     e.preventDefault()
     let url = $(e.target).data('url')
+    $(".vente").removeClass('but')
     $.post(url, $( "#vente").serialize(),function (json) {
         $( ".result" ).html( json.count );
         $( ".monthSales" ).html( json.monthSales );
+        console.log( $( ".pouce" ).hasClass( "hidden" ))
+        $( ".pouce" ).hasClass( "hidden" )
+        $(".pouce").removeClass('hidden')
+        $(".pouce").addClass('visible')
+        pouce(0,pouce(1))
+        
         var keys = Object.keys(json.tabSales)
         var datas = (Object.values(json.tabSales))
         var values =[]
@@ -51,7 +68,8 @@ $(".vente").on('click', (e) => {
         var canvas = document.getElementById("loader"); 
         if(canvas){
             canvas.remove()
-        }       
+        }  
+        $(".vente").addClass('but')     
         
     })
 })
