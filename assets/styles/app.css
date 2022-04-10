@@ -135,7 +135,7 @@ body {
     opacity: 0;
     position: absolute;
     left: 35em;
-    color: yellowgreen;
+    color: rgb(15, 155, 82);
   }
   .vente{
     border-radius: 50%;
@@ -180,7 +180,7 @@ body {
     filter: drop-shadow(0 2px 2px hsla(290, 100%, 20%, 1));
   }
   
-  button::before {
+  /* button::before {
     content: "";
     display: block;
     height: 0.25rem;
@@ -194,7 +194,7 @@ body {
     
     opacity: 0.7;
     background-image: linear-gradient(-270deg, rgba(255,255,255,0.00) 0%, #FFFFFF 20%, #FFFFFF 80%, rgba(255,255,255,0.00) 100%);
-  }
+  } */
   
   button::after {
     content: "";
