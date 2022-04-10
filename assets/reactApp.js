@@ -317,5 +317,8 @@ class App extends React.Component {
         }
     }
 }
+console.log(document.getElementById('root'))
+if(document.getElementById('root') != null){
+    ReactDOM.render(<App />, document.getElementById('root'));
 
-ReactDOM.render(<App />, document.getElementById('root'));
+}
