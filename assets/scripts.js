@@ -7,6 +7,8 @@
 
 // 
 
+console.log(window.screen.width)
+
 function pouce(val,ret = null){
     $( ".visible" ).animate({
         opacity: val,
