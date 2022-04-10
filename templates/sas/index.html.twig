@@ -3,15 +3,15 @@
 {% block title %}SAS{% endblock %}
 
 {% block body %}
-<nav class="homeConatainer navbar navbar-expand-lg navbar-light bg-dark">
+{# <nav class="homeConatainer navbar navbar-expand-lg navbar-light bg-dark">
     <div class="color sb-nav-link-icon">SAS</div>
     <div class="color">{{ 'now'|date('d - m -Y') }}</div>
     <div class="sb-nav-link-icon"><a class="color" href={{ path('app_home') }}> ACCEUIL</a></div>  
     {% if app.user %}
         <div class="sb-nav-link-icon"><a class="color" href={{ path('app_logout') }}> DECONNEXION</a></div>        
     {% endif %}
-</nav>
-    <div class="number">SAS :<span class="result">{{count}}</span></div>
+</nav> #}
+    <div class="number first">SAS :<span class="result">{{count}}</span></div>
     <div class="number">SAS/MOIS :<span class="monthSales"> {{monthSales}}</span></div>
 <div class="homeConatainer" id="homeConatainer">
     <div class="hidden pouce">

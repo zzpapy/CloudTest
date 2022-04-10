@@ -6,6 +6,27 @@
 // import { values } from "core-js/core/array";
 
 // 
+const options = {
+    grid: {
+        color: "white"
+      },
+        scales: {
+            yAxes:{
+                ticks: {
+                    fontSize: 18,
+                    color: "white",
+                    
+                    beginAtZero: true
+                }
+            },
+            xAxes:{
+                ticks: {
+                    color: "white",
+                }
+            }
+        }
+    
+}
 
 console.log(window.screen.width)
 
@@ -55,17 +76,17 @@ $(".vente").on('click', (e) => {
                 barThickness: 25,
                 maxBarThickness: 25,
                 minBarLength: 2,
-                backgroundColor: ['grey'],
+                backgroundColor: ['white'],
                 data: values,
             }]
         };
-       
+    
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',    	
-            data: myData,    	
+            data: myData, 
+            options: options   	
         });
-
     },"json" ).done( function (result) { 
         var canvas = document.getElementById("loader"); 
         if(canvas){
@@ -92,6 +113,7 @@ $.post('chart', $( "#vente").serialize(),function (json) {
         values = [...values,item.length]
         dataKey = [...dataKey, keys[index]+"  " +item.length]
       })
+ 
     var myData = {
         labels: dataKey,
         datasets: [{
@@ -100,7 +122,7 @@ $.post('chart', $( "#vente").serialize(),function (json) {
             barThickness: 25,
             maxBarThickness: 25,
             minBarLength: 2,
-            backgroundColor: ['grey'],
+            backgroundColor: ['white'],
             data: values,
         }]
     };
@@ -118,7 +140,8 @@ $.post('chart', $( "#vente").serialize(),function (json) {
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',    	
-            data: myData,    	
+            data: myData,  
+            options: options  	
         });
     }        
 

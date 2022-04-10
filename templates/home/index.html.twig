@@ -3,17 +3,7 @@
 {% block title %}ACCEUIL{% endblock %}
 
 {% block body %}
-<nav class="homeConatainer navbar navbar-expand-lg navbar-light bg-dark">
-    <div class="color sb-nav-link-icon">SAS</div>
-    <div class="color">{{ 'now'|date('d - m -Y') }}</div>
-    {% if app.user %}
-        <div class="sb-nav-link-icon"><a class="color" href={{ path('app_sas') }}> SAS</a></div>
-        <div class="sb-nav-link-icon"><a class="color" href={{ path('app_logout') }}> DECONNEXION</a></div>
-    {% else %}
-        <div class="sb-nav-link-icon"><a class="color" href="{{ path('app_register') }}">Register</a></div>
-        <div class="sb-nav-link-icon"><a class="color" href="{{ path('app_login') }}">CONNEXION</a></div>                
-    {% endif %}
-</nav>
+
 <div id="root"></div>
 {# <div class="homeConatainer films" id="films"></div> #}
 
