@@ -12,6 +12,10 @@ const options = {
       },
         scales: {
             yAxes:{
+                grid: {
+                    drawBorder: false,
+                    color: "white"
+                },
                 ticks: {
                     fontSize: 18,
                     color: "white",
@@ -20,6 +24,10 @@ const options = {
                 }
             },
             xAxes:{
+                grid: {
+                    drawBorder: false,
+                    color: "white"
+                },
                 ticks: {
                     color: "white", 
                 }
@@ -110,8 +118,10 @@ $.post('chart', $( "#vente").serialize(),function (json) {
     var values =[]
     var dataKey = []
     datas.forEach((item, index) => {
+        date = new Date(Date.parse(keys[index]))
+       date = date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear()
         values = [...values,item.length]
-        dataKey = [...dataKey, keys[index]+"  " +item.length]
+        dataKey = [...dataKey, date+"  " +item.length]
       })
  
     var myData = {
@@ -120,6 +130,7 @@ $.post('chart', $( "#vente").serialize(),function (json) {
             label: "sas",
             barPercentage: 0.5,
             barThickness: 25,
+            strokeColor : "rgba(255,255,255,1)",
             maxBarThickness: 25,
             minBarLength: 2,
             backgroundColor: ['white'],
