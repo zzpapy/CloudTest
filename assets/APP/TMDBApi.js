@@ -50,7 +50,14 @@ export function getFilmsFromApiWithSearchedText (text,page) {
         .catch(er => console.error(er))
   }
 
-
+  export function getUser(){
+    const url = "chatAjax"
+    var result= async () => await fetch(url)
+        .then(res => res.json())
+        .catch(er => console.error(er))
+    console.log(result)
+    return result
+  }
 
 
 
