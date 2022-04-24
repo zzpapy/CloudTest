@@ -180,8 +180,6 @@ $("#write").on('click', (e) => {
         $(".read").addClass("hidden")
         $("#write").addClass("mini")
         $("#read").addClass("mini")
-        $("#write").removeClass("menuItem")
-        $("#read").removeClass("menuItem")
 })
 $("#read").on('click', (e) => {
     e.preventDefault()
@@ -190,8 +188,6 @@ $("#read").on('click', (e) => {
         $(".write").addClass("hidden")
         $("#read").addClass("mini")
         $("#write").addClass("mini")
-        $("#read").removeClass("menuItem")
-        $("#write").removeClass("menuItem")
 })
 $("#chat").on('click', (e) => {
     e.preventDefault()

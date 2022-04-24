@@ -9,7 +9,7 @@ body {
 .homeConatainer{
     display: flex ;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 2em;
     margin: 0 auto;
     position: relative;
@@ -242,6 +242,7 @@ body {
     border: 1px solid black;
     border-radius: 2em 2em  2em 2em;
     margin: 2px;
+    cursor: pointer;
   }
   #phrase_form_Texte, .tox,.text{
     flex: 1;
@@ -259,8 +260,14 @@ body {
     text-align: center;
     border: 1px solid black;
     border-radius: 2em 2em  2em 2em;
-    padding: 5em;
-    margin: 2em;
+    padding: 3em;
+    margin-top: 1em;
+    box-shadow: 10px 5px 5px #1e7e34;
+    cursor: pointer;
+  }
+  .menuItem:active{
+    box-shadow: 0px 0px 0px #1e7e34;
+    cursor: pointer;
   }
   .mini{
     width: 5%;
@@ -269,5 +276,6 @@ body {
     border: 1px solid black;
     border-radius: 2em 2em  2em 2em;
     padding: 0.5em;
-    margin: 2em;
+    /* margin: 2em; */
+    cursor: pointer;
   }

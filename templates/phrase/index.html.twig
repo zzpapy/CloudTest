@@ -27,7 +27,7 @@
     </div>
     <div class="homeConatainer">
         {% for phrase in list %}
-            <div class="phrase copy {{ phrase.category }} hidden">{{ phrase.texte|raw }}</div>
+            <div class="phrase copy {{ phrase.category }} hidden" title="Cliquez pour copier">{{ phrase.texte|raw }}</div>
         {% endfor %}
     </div>
 </div>
