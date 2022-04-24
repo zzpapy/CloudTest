@@ -243,7 +243,31 @@ body {
     border-radius: 2em 2em  2em 2em;
     margin: 2px;
   }
-  #phrase_form_Texte, .tox{
+  #phrase_form_Texte, .tox,.text{
     flex: 1;
     width: 100%;
+  }
+  .menu{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  }
+  .menuItem{
+    width: 25%;
+    font-size: 36px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 2em 2em  2em 2em;
+    padding: 5em;
+    margin: 2em;
+  }
+  .mini{
+    width: 5%;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 2em 2em  2em 2em;
+    padding: 0.5em;
+    margin: 2em;
   }

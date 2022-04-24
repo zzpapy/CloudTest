@@ -4,17 +4,22 @@
 
 {% block body %}
 
-
-<div>
+<div class="menu">
+    <div class="menuItem" id="write"><i class="fa-solid fa-pen"></i></div>
+    <div class="menuItem" id="read"><i class="fa-brands fa-readme"></i></div>
+</div>
+<div class="write hidden">
  {{form_start(phraseForm,{'attr': {'id':"vente","class" :"homeConatainer" }})}}
     <div>
      <button class=" but type add-another-collection-widget" <i class="fa-solid fa-hand-peace"></i></button>
      </div>
-   {# {{ form_widget(phraseForm.Texte, { 'attr': {'class': 'text', 'id':'editor'} }) }} #}
-   <input type="textarea" id="phrase_form_Texte" name="phrase_form[Texte]" value="" class="text" />
+     <div class="text">
+        {{ form_widget(phraseForm.category, { 'attr': {'class': '', 'id':''} }) }}
+        <input type="textarea" id="phrase_form_Texte" name="phrase_form[Texte]" value="" class="text" />
+    </div>
     {{form_end(phraseForm)}}
 </div>
-<div class="homeConatainer">
+<div class="homeConatainer read hidden">
     {% for phrase in list %}
         <div class="phrase copy">{{ phrase.texte|raw }}</div>
     {% endfor %}
