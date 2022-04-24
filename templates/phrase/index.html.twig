@@ -19,9 +19,16 @@
     </div>
     {{form_end(phraseForm)}}
 </div>
-<div class="homeConatainer read hidden">
-    {% for phrase in list %}
-        <div class="phrase copy">{{ phrase.texte|raw }}</div>
-    {% endfor %}
+<div class=" read hidden">
+    <div class="menu">
+        <div class="menuItem" id="mail"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <div class="menuItem" id="chat"><i class="fa-brands fa-rocketchat"></i></div>
+        <div class="menuItem" id="divers"><i class="fa-solid fa-object-group"></i></div>
+    </div>
+    <div class="homeConatainer">
+        {% for phrase in list %}
+            <div class="phrase copy {{ phrase.category }} hidden">{{ phrase.texte|raw }}</div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

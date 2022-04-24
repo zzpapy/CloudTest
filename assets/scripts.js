@@ -193,3 +193,40 @@ $("#read").on('click', (e) => {
         $("#read").removeClass("menuItem")
         $("#write").removeClass("menuItem")
 })
+$("#chat").on('click', (e) => {
+    e.preventDefault()
+   console.log(e)
+        $(".chat").removeClass("hidden")
+        $("#chat").addClass("mini")
+        $("#mail").addClass("mini")
+        $("#divers").addClass("mini")
+        $(".mail").hasClass("hidden") ? null : $(".mail").addClass("hidden")
+        $(".divers").hasClass("hidden") ? null : $(".divers").addClass("hidden")
+        
+       
+})
+$("#mail").on('click', (e) => {
+    e.preventDefault()
+   console.log(e)
+        $(".mail").removeClass("hidden")
+        $("#chat").addClass("mini")
+        $("#mail").addClass("mini")
+        $("#divers").addClass("mini")
+        $(".chat").hasClass("hidden") ? null : $(".chat").addClass("hidden")
+        $(".divers").hasClass("hidden") ? null : $(".divers").addClass("hidden")
+       
+})
+$("#divers").on('click', (e) => {
+    e.preventDefault()
+   console.log(e)
+        $(".divers").removeClass("hidden")
+        $("#chat").addClass("mini")
+        $("#mail").addClass("mini")
+        $("#divers").addClass("mini")
+        $(".mail").hasClass("hidden") ? null : $(".mail").addClass("hidden")
+        $(".chat").hasClass("hidden") ? null : $(".chat").addClass("hidden")
+       
+})
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
