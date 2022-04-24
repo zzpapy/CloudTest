@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sales;
 use App\Form\SalesFormType;
-use App\Repository\SalesRepository;
+use App\Repository\SalesRepository; 
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

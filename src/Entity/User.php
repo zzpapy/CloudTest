@@ -33,9 +33,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Sales::class)]
     private $sales;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Phrase::class)]
+    private $phrases;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Phrase::class)]
+    private $phrase1;
+
     public function __construct()
     {
         $this->sales = new ArrayCollection();
+        $this->phrases = new ArrayCollection();
+        $this->phrase1 = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,6 +159,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($sale->getUser() === $this) {
                 $sale->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Phrase>
+     */
+    public function getPhrases(): Collection
+    {
+        return $this->phrases;
+    }
+
+    public function addPhrase(Phrase $phrase): self
+    {
+        if (!$this->phrases->contains($phrase)) {
+            $this->phrases[] = $phrase;
+            $phrase->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhrase(Phrase $phrase): self
+    {
+        if ($this->phrases->removeElement($phrase)) {
+            // set the owning side to null (unless already changed)
+            if ($phrase->getUser() === $this) {
+                $phrase->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Phrase>
+     */
+    public function getPhrase1(): Collection
+    {
+        return $this->phrase1;
+    }
+
+    public function addPhrase1(Phrase $phrase1): self
+    {
+        if (!$this->phrase1->contains($phrase1)) {
+            $this->phrase1[] = $phrase1;
+            $phrase1->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhrase1(Phrase $phrase1): self
+    {
+        if ($this->phrase1->removeElement($phrase1)) {
+            // set the owning side to null (unless already changed)
+            if ($phrase1->getUser() === $this) {
+                $phrase1->setUser(null);
             }
         }
 

@@ -1,8 +1,8 @@
 /* @import "~bootstrap/scss/bootstrap"; */
 body {
-    background-color: black;
+    /* background-color: black; */
     font-weight: bold;
-    color: white;
+    /* color: white; */
 }
 
 
@@ -236,3 +236,14 @@ body {
     }
   
   } 
+  .phrase{
+    width: 25%;
+    padding: 2em;
+    border: 1px solid black;
+    border-radius: 2em 2em  2em 2em;
+    margin: 2px;
+  }
+  #phrase_form_Texte, .tox{
+    flex: 1;
+    width: 100%;
+  }

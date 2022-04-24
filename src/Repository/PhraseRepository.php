@@ -45,6 +45,20 @@ class PhraseRepository extends ServiceEntityRepository
         }
     }
 
+    public function listText($value)
+    {
+        dump($value);
+        $qb = $this->createQueryBuilder('s')
+            ->andWhere('s.user = :val')
+            ->setParameter('val', $value);
+            // ->orderBy('s.id', 'ASC');
+            $result = $qb->getQuery()->getResult();
+            return $result;
+        ;
+    }
+    
+
+
     // /**
     //  * @return Phrase[] Returns an array of Phrase objects
     //  */

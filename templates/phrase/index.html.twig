@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PhraseController!{% endblock %}
+
+{% block body %}
+
+
+<div>
+ {{form_start(phraseForm,{'attr': {'id':"vente","class" :"homeConatainer" }})}}
+    <div>
+     <button class=" but type add-another-collection-widget" <i class="fa-solid fa-hand-peace"></i></button>
+     </div>
+   {{ form_widget(phraseForm.Texte, { 'attr': {'class': 'text', 'id':'editor'} }) }}
+    {{form_end(phraseForm)}}
+</div>
+<div class="homeConatainer">
+    {% for phrase in list %}
+        <div class="phrase copy">{{ phrase.texte|raw }}</div>
+    {% endfor %}
+</div>
+{% endblock %}

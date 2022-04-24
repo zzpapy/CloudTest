@@ -23,6 +23,7 @@
         <nav class="homeConatainer navbar navbar-expand-lg navbar-light bg-dark">
             {% if app.user %}
                 <div class="nav sb-nav-link-icon"><a class="color" href={{ path('app_sas') }}> SAS</a></div>
+                <div class="nav sb-nav-link-icon"><a class="color" href={{ path('app_phrase') }}> Texte auto</a></div>
                 <div class="nav sb-nav-link-icon"><a class="color" href={{ path('app_home') }}> ACCEUIL</a></div>
                 <div class="nav sb-nav-link-icon"><a class="color" href="{{ path('app_logout') }}">DECONNEXION</a></div>
             {% else %}
@@ -31,6 +32,8 @@
                 <div class="nav sb-nav-link-icon"><a class="color" href="{{ path('app_login') }}">CONNEXION</a></div>                
             {% endif %}
         </nav>
+        {# <div id="editor">This is some sample content.</div> #}
+               
         {% block body %}
        
         {% endblock %}
@@ -47,5 +50,12 @@
         crossorigin="anonymous" 
         referrerpolicy="no-referrer"></script>
         <script src="https://kit.fontawesome.com/6ad4fc4b75.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.tiny.cloud/1/06npfn9ejcm5kstb0y5tidqhi569unyaz4fahvgzfwxhhls0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+      tinymce.init({
+        selector: '#phrase_form_Texte'
+      });
+    </script>
+
     </body>
 </html>

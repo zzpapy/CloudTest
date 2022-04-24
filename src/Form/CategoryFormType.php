@@ -2,26 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Phrase;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class PhraseFormType extends AbstractType
+class CategoryFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('category', ChoiceType::class, [
-            'choices'  => [
-                'chat' => 'chat',
-                'mail' => 'mail',
-                'divers' => 'divers',
-            ],
-            'expanded' => true,
-          'multiple' => false,
-        ])
         ->add('Texte')
         ;
     }
@@ -29,7 +19,7 @@ class PhraseFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Phrase::class,
+            'data_class' => Category::class,
         ]);
     }
 }

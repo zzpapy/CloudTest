@@ -7,24 +7,23 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\AbstractType;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource]
-class Category
+class Category extends AbstractType
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Phrase::class)]
-    private $phrase;
+  
 
-    public function __construct()
-    {
-        $this->phrase = new ArrayCollection();
-    }
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
 
+  
     public function getId(): ?int
     {
         return $this->id;
@@ -33,29 +32,15 @@ class Category
     /**
      * @return Collection<int, Phrase>
      */
-    public function getPhrase(): Collection
+   
+    public function getName(): ?string
     {
-        return $this->phrase;
+        return $this->name;
     }
 
-    public function addPhrase(Phrase $phrase): self
+    public function setName(string $name): self
     {
-        if (!$this->phrase->contains($phrase)) {
-            $this->phrase[] = $phrase;
-            $phrase->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removePhrase(Phrase $phrase): self
-    {
-        if ($this->phrase->removeElement($phrase)) {
-            // set the owning side to null (unless already changed)
-            if ($phrase->getCategory() === $this) {
-                $phrase->setCategory(null);
-            }
-        }
+        $this->name = $name;
 
         return $this;
     }
