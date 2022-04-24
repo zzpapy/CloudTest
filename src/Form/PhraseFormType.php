@@ -22,7 +22,6 @@ class PhraseFormType extends AbstractType
             'expanded' => true,
           'multiple' => false,
         ])
-        ->add('Texte')
         ;
     }
 
@@ -30,6 +29,7 @@ class PhraseFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Phrase::class,
+            "allow_extra_fields" => true
         ]);
     }
 }
