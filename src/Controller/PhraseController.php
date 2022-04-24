@@ -17,6 +17,7 @@ class PhraseController extends AbstractController
     #[Route('/phrase', name: 'app_phrase')]
     public function index(Request $request,ManagerRegistry $doctrine): Response
     {
+        if ($this->getUser()) {
         $phrase = new Phrase();
         $phraseForm = $this->createForm(PhraseFormType::class, $phrase);
 
@@ -46,5 +47,9 @@ class PhraseController extends AbstractController
             "phraseForm" => $phraseForm->createView(),
             "list" => $listText
         ]);
+    }
+    else{
+        return $this->redirectToRoute('app_login');
+    }
     }
 }
