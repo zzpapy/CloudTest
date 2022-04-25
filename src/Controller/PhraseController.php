@@ -52,4 +52,19 @@ class PhraseController extends AbstractController
         return $this->redirectToRoute('app_login');
     }
     }
+    #[Route('/delete', name: 'app_delete')]
+    public function delete(Request $request,ManagerRegistry $doctrine): Response
+    {
+        $id = $request->request->get('id');
+        $phrase = $doctrine->getRepository(Phrase::class)->find($id);
+        // dump($id,$phrase);die;
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($phrase);
+        $entityManager->flush();
+        $response = new Response();
+        $response->setContent(json_encode([
+            "sales" => "test excell"
+        ]));
+        return $response;
+    }
 }

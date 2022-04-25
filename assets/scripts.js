@@ -226,3 +226,12 @@ $("#divers").on('click', (e) => {
 if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
 }
+$(".delete").on('click', (e) => {
+    e.preventDefault()
+   id = $(".delete").data("id")
+   $.post('delete', $( "#"+id).serialize(),function (json) {
+
+   })
+        
+       
+})

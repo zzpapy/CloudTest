@@ -1,6 +1,6 @@
 /* @import "~bootstrap/scss/bootstrap"; */
 body {
-    /* background-color: black; */
+    background-color: black;
     font-weight: bold;
     /* color: white; */
 }
@@ -31,6 +31,7 @@ body {
     flex: 1;
     align-self: center;
     text-align: center;
+    color:white;
 }
 .first{
   margin-top: 2em;
@@ -236,6 +237,10 @@ body {
     }
   
   } 
+  .textcontainer{
+    background-color: white;
+    color: black;
+  }
   .phrase{
     /* width: 25%; */
     padding: 2em;
@@ -262,6 +267,7 @@ body {
     border-radius: 2em 2em  2em 2em;
     padding: 3em;
     margin-top: 1em;
+    margin-bottom: 1em;
     box-shadow: 10px 5px 5px #1e7e34;
     cursor: pointer;
   }
