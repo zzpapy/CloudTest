@@ -223,11 +223,20 @@ if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
 }
 $(".delete").on('click', (e) => {
-    e.preventDefault()
-    console.log(e.target)
-   id = $(e.target).data("id")
-   $.post('delete', $( "#"+id).serialize(),function (json) {
+    // e.preventDefault()
+    e.stopPropagation();
 
-   })        
+    id = $(e.target).data("id")
+    console.log(e.target,$( "#"+id).parent().contents())
+   let confirmAction = confirm("Etes vous sure de vouloir supprimer le texte ?");
+    if (confirmAction) {
+        $.post('delete', $( "#"+id).serialize(),function (json) {
+            
+        })        
+        alert("Etes vous certain !!!");
+    } else {
+        alert("Action canceled");
+    }
+$( "#"+id).remove()
        
 })
