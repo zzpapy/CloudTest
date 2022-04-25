@@ -183,7 +183,6 @@ $("#write").on('click', (e) => {
 })
 $("#read").on('click', (e) => {
     e.preventDefault()
-   console.log(e)
         $(".read").removeClass("hidden")
         $(".write").addClass("hidden")
         $("#read").addClass("mini")
@@ -191,7 +190,6 @@ $("#read").on('click', (e) => {
 })
 $("#chat").on('click', (e) => {
     e.preventDefault()
-   console.log(e)
         $(".chat").removeClass("hidden")
         $("#chat").addClass("mini")
         $("#mail").addClass("mini")
@@ -203,7 +201,6 @@ $("#chat").on('click', (e) => {
 })
 $("#mail").on('click', (e) => {
     e.preventDefault()
-   console.log(e)
         $(".mail").removeClass("hidden")
         $("#chat").addClass("mini")
         $("#mail").addClass("mini")
@@ -214,7 +211,6 @@ $("#mail").on('click', (e) => {
 })
 $("#divers").on('click', (e) => {
     e.preventDefault()
-   console.log(e)
         $(".divers").removeClass("hidden")
         $("#chat").addClass("mini")
         $("#mail").addClass("mini")
@@ -228,10 +224,10 @@ if ( window.history.replaceState ) {
 }
 $(".delete").on('click', (e) => {
     e.preventDefault()
-   id = $(".delete").data("id")
+    console.log(e.target)
+   id = $(e.target).data("id")
    $.post('delete', $( "#"+id).serialize(),function (json) {
 
-   })
-        
+   })        
        
 })
