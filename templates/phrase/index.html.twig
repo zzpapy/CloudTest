@@ -11,6 +11,9 @@
         <div class="menuItem" id="write"><i class="fa-solid fa-pen"></i></div>
         <div class="menuItem" id="read"><i class="fa-brands fa-readme"></i></div>
     </div>
+    <div class="search">
+        <input type="text" name="keyword" >
+    </div>
     <div class="write hidden">
     {{form_start(phraseForm,{'attr': {'id':"vente","class" :"homeConatainer" }})}}
         <div>
@@ -22,7 +25,7 @@
         </div>
         {{form_end(phraseForm)}}
     </div>
-    <div class=" read hidden">
+    <div class=" read hidden context">
         <div class="menu">
             <div class="menuItem" id="mail"><i class="fa-solid fa-envelope-open-text"></i></div>
             <div class="menuItem" id="chat"><i class="fa-brands fa-rocketchat"></i></div>
