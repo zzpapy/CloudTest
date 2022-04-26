@@ -296,3 +296,8 @@ body {
 .copy{
   padding: 3em;
 }
+.copie{
+  background-color: green;
+  position: absolute;
+  width: 100%;
+}

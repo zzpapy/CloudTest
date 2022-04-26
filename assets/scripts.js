@@ -167,7 +167,9 @@ $(".copy").on('click', (e) => {
     e.preventDefault()
     htmlContent = e.target.textContent
     navigator.clipboard.writeText(htmlContent).then(() => {
-        alert("Texte copié !")
+        $(".copie").toggle(1000, function() {
+            $(".copie").toggle(3000)
+          })
     })
     console.log(e.target)
 })

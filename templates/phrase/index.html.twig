@@ -4,6 +4,9 @@
 
 {% block body %}
 <div class="textcontainer">
+    <div class="copie hidden">
+        <p>Texte copié !!!</p>
+    </div>
     <div class="menu">
         <div class="menuItem" id="write"><i class="fa-solid fa-pen"></i></div>
         <div class="menuItem" id="read"><i class="fa-brands fa-readme"></i></div>
@@ -26,6 +29,7 @@
             <div class="menuItem" id="divers"><i class="fa-solid fa-object-group"></i></div>
         </div>
         <div class="homeConatainer">
+      
             {% for phrase in list %}
                 <div class="phrase  {{ phrase.category }} hidden" title="Cliquez pour copier">
                     <form action="" id="{{ phrase.id }}">
