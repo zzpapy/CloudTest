@@ -227,7 +227,7 @@ $(".delete").on('click', (e) => {
     e.stopPropagation();
 
     id = $(e.target).data("id")
-    console.log(e.target,$( "#"+id).parent().contents())
+    console.log($( "#"+id).parent())
    let confirmAction = confirm("Etes vous sure de vouloir supprimer le texte ?");
     if (confirmAction) {
         $.post('delete', $( "#"+id).serialize(),function (json) {
@@ -235,8 +235,8 @@ $(".delete").on('click', (e) => {
         })        
         alert("Etes vous certain !!!");
     } else {
-        alert("Action canceled");
+        alert("Suppression annulée");
     }
-$( "#"+id).remove()
+$( "#"+id).parent().remove()
        
 })

@@ -248,6 +248,7 @@ body {
     border-radius: 2em 2em  2em 2em;
     margin: 2px;
     cursor: pointer;
+    position: relative;
   }
   #phrase_form_Texte, .tox,.text{
     flex: 1;
@@ -284,4 +285,9 @@ body {
     padding: 0.5em;
     /* margin: 2em; */
     cursor: pointer;
+  }
+  .delete{
+    position: absolute;
+    top: -1.5em;
+    left: 0;
   }
