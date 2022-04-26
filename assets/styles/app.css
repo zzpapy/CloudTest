@@ -242,8 +242,6 @@ body {
     color: black;
   }
   .phrase{
-    /* width: 25%; */
-    padding: 2em;
     border: 1px solid black;
     border-radius: 2em 2em  2em 2em;
     margin: 2px;
@@ -294,4 +292,7 @@ body {
     border-radius: 50%;
     width: 1.5em;
     text-align: center;
+}
+.copy{
+  padding: 3em;
 }

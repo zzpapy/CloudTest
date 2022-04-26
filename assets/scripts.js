@@ -167,12 +167,9 @@ $(".copy").on('click', (e) => {
     e.preventDefault()
     htmlContent = e.target.textContent
     navigator.clipboard.writeText(htmlContent).then(() => {
-        // 3. On réinitialise le formulaire
-        
-        // 4. On affiche l'alert
         alert("Texte copié !")
     })
-    console.log(htmlContent)
+    console.log(e.target)
 })
 $("#write").on('click', (e) => {
     e.preventDefault()
