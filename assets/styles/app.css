@@ -298,7 +298,8 @@ body {
 }
 .copie{
   background-color: green;
-  position: absolute;
+  position: fixed;
+  top:0;
   width: 100%;
 }
 .search{
