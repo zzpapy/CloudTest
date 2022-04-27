@@ -18,6 +18,10 @@ body {
     color: white;
     font-weight: bold;
 }
+.colorMenu{
+  background-color: rgb(19, 160, 23);
+  font-weight: bold;
+}
 .result{
     text-align: center;
     font-size: x-large;

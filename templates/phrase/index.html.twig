@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PhraseController!{% endblock %}
+{% block title %}{{app.user.email}}{% endblock %}
 
 {% block body %}
 <div class="textcontainer">
@@ -11,7 +11,7 @@
         <div class="menuItem" id="write"><i class="fa-solid fa-pen"></i></div>
         <div class="menuItem" id="read"><i class="fa-brands fa-readme"></i></div>
     </div>
-    <div class="search">
+    <div class="search hidden">
         <input type="text" name="keyword" >
     </div>
     <div class="write hidden">
@@ -45,26 +45,7 @@
                 </div>
             {% endfor %}
         </div>
-        <div class=" divers hidden context">
-        <div class="menu">
-            <div class="menuItem" id="mail"><i class="fa-solid fa-envelope-open-text"></i></div>
-            <div class="menuItem" id="chat"><i class="fa-brands fa-rocketchat"></i></div>
-            <div class="menuItem" id="divers"><i class="fa-solid fa-object-group"></i></div>
-        </div>
-        <div class="homeConatainer">
-      
-            {% for phrase in list %}
-                <div class="phrase  {{ phrase.category }} hidden" title="Cliquez pour copier">
-                    <form action="" id="{{ phrase.id }}">
-                        <input type="hidden" name="id" value="{{ phrase.id }}">
-                    </form>
-                    <div class="delete" data-id="{{ phrase.id }}"  value="{{ phrase.id }}">X</div>
-                    <div class="copy">
-                        {{ phrase.texte|raw }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+       
     </div>
 </div>
 {% endblock %}

@@ -175,6 +175,7 @@ $(".copy").on('click', (e) => {
 })
 $("#write").on('click', (e) => {
     e.preventDefault()
+         $(".search").removeClass("hidden")
         $(".write").removeClass("hidden")
         $(".read").addClass("hidden")
         $("#write").addClass("mini")
@@ -182,40 +183,55 @@ $("#write").on('click', (e) => {
 })
 $("#read").on('click', (e) => {
     e.preventDefault()
+    $(".search").removeClass("hidden")
         $(".read").removeClass("hidden")
         $(".write").addClass("hidden")
         $("#read").addClass("mini")
         $("#write").addClass("mini")
+        
 })
 $("#chat").on('click', (e) => {
+    $(this).css('background-color', '#ff0000');
     e.preventDefault()
         $(".chat").removeClass("hidden")
         $("#chat").addClass("mini")
+        $("#chat").addClass("colorMenu")
         $("#mail").addClass("mini")
         $("#divers").addClass("mini")
         $(".mail").hasClass("hidden") ? null : $(".mail").addClass("hidden")
         $(".divers").hasClass("hidden") ? null : $(".divers").addClass("hidden")
+        $(".mail").hasClass("colorMenu") ?  $(".mail").removeClass("colorMenu") : null
+        console.log($(".mail").hasClass("colorMenu"))
+        $(".divers").hasClass("colorMenu")?  $(".divers").removeClass("colorMenu") : null
         
        
 })
 $("#mail").on('click', (e) => {
     e.preventDefault()
         $(".mail").removeClass("hidden")
+        $("#mail").addClass("colorMenu")
         $("#chat").addClass("mini")
         $("#mail").addClass("mini")
         $("#divers").addClass("mini")
         $(".chat").hasClass("hidden") ? null : $(".chat").addClass("hidden")
         $(".divers").hasClass("hidden") ? null : $(".divers").addClass("hidden")
+        $(".chat").hasClass("colorMenu") ?  $(".chat").removeClass("colorMenu") : null
+        console.log($(".chat").hasClass("colorMenu"))
+        $(".divers").hasClass("colorMenu")?  $(".divers").removeClass("colorMenu") : null
        
 })
 $("#divers").on('click', (e) => {
     e.preventDefault()
         $(".divers").removeClass("hidden")
+        $("#divers").addClass("colorMenu")
         $("#chat").addClass("mini")
         $("#mail").addClass("mini")
         $("#divers").addClass("mini")
         $(".mail").hasClass("hidden") ? null : $(".mail").addClass("hidden")
         $(".chat").hasClass("hidden") ? null : $(".chat").addClass("hidden")
+        $(".chat").hasClass("colorMenu") ?  $(".chat").removeClass("colorMenu") : null
+        console.log($(".mail").hasClass("colorMenu"))
+        $(".mail").hasClass("colorMenu")?  $(".divers").removeClass("colorMenu") : null
        
 })
 if ( window.history.replaceState ) {
