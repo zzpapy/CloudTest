@@ -36,8 +36,6 @@ const options = {
     
 }
 
-console.log(window.screen.width)
-
 function pouce(val,ret = null){
     $( ".visible" ).animate({
         opacity: val,
@@ -54,7 +52,6 @@ $(".vente").on('click', (e) => {
     $.post(url, $( "#vente").serialize(),function (json) {
         $( ".result" ).html( json.count );
         $( ".monthSales" ).html( json.monthSales );
-        console.log( $( ".pouce" ).hasClass( "hidden" ))
         $( ".pouce" ).hasClass( "hidden" )
         $(".pouce").removeClass('hidden')
         $(".pouce").addClass('visible')
@@ -109,7 +106,6 @@ window.addEventListener('DOMContentLoaded', event => {
     
 });
 
-console.log($("#root"))
 $.post('chart', $( "#vente").serialize(),function (json) {
     $( ".result" ).html( json.count );
     $( ".monthSales" ).html( json.monthSales );
@@ -171,7 +167,6 @@ $(".copy").on('click', (e) => {
             $(".copie").toggle(3000)
           })
     })
-    console.log(e.target)
 })
 $("#write").on('click', (e) => {
     e.preventDefault()
@@ -200,9 +195,8 @@ $("#chat").on('click', (e) => {
         $("#divers").addClass("mini")
         $(".mail").hasClass("hidden") ? null : $(".mail").addClass("hidden")
         $(".divers").hasClass("hidden") ? null : $(".divers").addClass("hidden")
-        $(".mail").hasClass("colorMenu") ?  $(".mail").removeClass("colorMenu") : null
-        console.log($(".mail").hasClass("colorMenu"))
-        $(".divers").hasClass("colorMenu")?  $(".divers").removeClass("colorMenu") : null
+        $("#mail").hasClass("colorMenu") ?  $("#mail").removeClass("colorMenu") : null
+        $("#divers").hasClass("colorMenu")?  $("#divers").removeClass("colorMenu") : null
         
        
 })
@@ -215,9 +209,8 @@ $("#mail").on('click', (e) => {
         $("#divers").addClass("mini")
         $(".chat").hasClass("hidden") ? null : $(".chat").addClass("hidden")
         $(".divers").hasClass("hidden") ? null : $(".divers").addClass("hidden")
-        $(".chat").hasClass("colorMenu") ?  $(".chat").removeClass("colorMenu") : null
-        console.log($(".chat").hasClass("colorMenu"))
-        $(".divers").hasClass("colorMenu")?  $(".divers").removeClass("colorMenu") : null
+        $("#chat").hasClass("colorMenu") ?  $("#chat").removeClass("colorMenu") : null
+        $("#divers").hasClass("colorMenu")?  $("#divers").removeClass("colorMenu") : null
        
 })
 $("#divers").on('click', (e) => {
@@ -229,9 +222,8 @@ $("#divers").on('click', (e) => {
         $("#divers").addClass("mini")
         $(".mail").hasClass("hidden") ? null : $(".mail").addClass("hidden")
         $(".chat").hasClass("hidden") ? null : $(".chat").addClass("hidden")
-        $(".chat").hasClass("colorMenu") ?  $(".chat").removeClass("colorMenu") : null
-        console.log($(".mail").hasClass("colorMenu"))
-        $(".mail").hasClass("colorMenu")?  $(".divers").removeClass("colorMenu") : null
+        $("#chat").hasClass("colorMenu") ?  $("#chat").removeClass("colorMenu") : null
+        $("#mail").hasClass("colorMenu")?  $("#mail").removeClass("colorMenu") : null
        
 })
 if ( window.history.replaceState ) {
@@ -242,7 +234,6 @@ $(".delete").on('click', (e) => {
     e.stopPropagation();
 
     id = $(e.target).data("id")
-    console.log($( "#"+id).parent())
    let confirmAction = confirm("Etes vous sure de vouloir supprimer le texte ?");
     if (confirmAction) {
         $.post('delete', $( "#"+id).serialize(),function (json) {
