@@ -13,5 +13,7 @@ import './bootstrap';
 
 import './scripts'
 
+import './tchat'
+
 import './reactApp'
  

@@ -1,0 +1,105 @@
+// $("#click").on('click', (e) => {
+//     e.preventDefault()
+//     let url = $(e.target).data('url')
+//     $.post(url, $( "#tchat").serialize(),function (json) {
+//         console.log(Object.values(json.message))
+//         $(".listMess").html("")
+//         Object.values(json.message).forEach(element => {
+//             $(".listMess").append( "<div><p>"+element.user+"</p><p>"+element.text+"</p></div>")
+            
+//         });
+//         console.log(json.message)
+       
+       
+//     },"json" ).done( function (result) { 
+//         console.log(result.message)
+//         result.message.forEach(element => {
+//             console.log(element)
+            
+//         });
+//     })
+// })
+
+import React , { useEffect, useState }from 'react';
+import { tchat, init } from './APP/TMDBApi'
+import ReactDOM from 'react-dom';
+import Message from './components/Message';
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);   
+        this.handleActorKeyUp = this.keyUpHandlerActor.bind(this, 'message');     
+        this.state = {
+            text : "",
+            messages :{}
+           
+        };
+    }
+    
+    
+    componentDidMount() {
+        
+           setInterval(
+                 ()=>{ this.code()}
+                ,5000)
+        }
+    code = () => {
+        init().then(res => {
+            return res
+        })
+        .then(res=> {
+            console.log(res)
+            this.setState(current => ({
+                            
+                messages : res
+            }));
+            return res
+        })
+    } 
+    keyUpHandlerActor = (refName, e) => {
+        this.setState(current => ({
+                              
+            text :refName.target.value
+          }));
+        // if(e.target.value.length > 0){
+        //    console.log(e.target.value.length)
+        // }
+    }
+    handleClick = (e) => {
+        e.preventDefault();
+        console.log(tchat(this.state.text))
+        tchat(this.state.text).then( res => {
+            this.setState(current => ({
+                              
+                messages : res
+              }));
+            console.log(this.state.messages)
+        })
+    }
+    render() {
+    return (
+        <div  key={(6)}>                
+            {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
+                ({ index,user, text }) =>  (
+                    <Message
+                    key={index}
+                    user={user}
+                    message={text}
+                    >
+                   </Message>
+               )
+               ):null} 
+            <div key={(7)} className="input">
+                <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref="message"  />
+            </div>
+            <div key={(8)} id="click" onClick={this.handleClick} data-url='/tchat'>OK</div>
+        </div>
+
+        )
+    }
+    
+}
+if(document.getElementById('listMess') != null){
+    ReactDOM.render(<App />, document.getElementById('listMess'));
+
+}

@@ -59,6 +59,32 @@ export function getFilmsFromApiWithSearchedText (text,page) {
     return result
   }
 
+  export function tchat(data){
+    const url = "tchat"
+    console.log(data)
+    return fetch(url+"?"+"message="+data)
+        .then(async res => {
+          console.log(res)
+          return res.json()
+        })
+        .then(async res => {
+          return res
+          
+        })
+        .catch(er => console.error(er))
+  }
+  export async function init(data){
+    const url = "init"
+    try {
+      const res = await fetch(url);
+      const res_1 = await res.json();
+      console.log(res_1);
+      return await res_1;
+    } catch (er) {
+      return console.error(er);
+    }
+  }
+
 
 
   

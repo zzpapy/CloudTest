@@ -272,4 +272,9 @@ $(function() {
     $("input[type='checkbox']").on("change", mark);
   
   });
+
+  $(".chatVisible").on('click', (e) => {
+    e.preventDefault()
+    $(".listMess").removeClass("hidden")
+})
   
