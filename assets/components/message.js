@@ -5,6 +5,7 @@ import React from 'react';
      <div key={index} className="mess" >  
         <p className="name">{user}</p>       
         <div>{message}</div>
+        
      </div>
  )};
  
