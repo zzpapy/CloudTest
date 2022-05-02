@@ -324,7 +324,7 @@ body {
   background: white;
   z-index: 1;
   margin-left: 25%;
-  margin-top: 2em;
+  top: 1em;
 }
 
 .listMess > div{
