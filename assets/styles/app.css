@@ -341,3 +341,11 @@ body {
   margin-top: 1em;
 }
 
+.menuChat {
+  position: fixed;
+  left: 26%;
+  z-index: 1;
+  top: 75%;
+
+}
+
