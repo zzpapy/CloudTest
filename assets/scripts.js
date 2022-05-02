@@ -275,6 +275,8 @@ $(function() {
 
   $(".chatVisible").on('click', (e) => {
     e.preventDefault()
-    $(".listMess").removeClass("hidden")
+    $(".listMess").hasClass("hidden") ?  $(".listMess").removeClass("hidden") : $(".listMess").addClass("hidden")
+    $('.listMess')[0].scrollIntoView(false)
+   
 })
   

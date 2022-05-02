@@ -24,14 +24,21 @@ import React , { useEffect, useState }from 'react';
 import { tchat, init } from './APP/TMDBApi'
 import ReactDOM from 'react-dom';
 import Message from './components/Message';
+import ScrollToBottom from 'react-scroll-to-bottom';
+import { css } from '@emotion/css'
 
 class App extends React.Component {
+   
     constructor(props) {
         super(props);   
         this.handleActorKeyUp = this.keyUpHandlerActor.bind(this, 'message');     
         this.state = {
             text : "",
-            messages :{}
+            messages :{},
+            ROOT_CSS : css({
+                height:600,
+                // width: 400
+              })
            
         };
     }
@@ -78,7 +85,7 @@ class App extends React.Component {
     }
     render() {
     return (
-        <div  key={(6)}>                
+        <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}>                
             {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
                 ({ index,user, text }) =>  (
                     <Message
@@ -93,7 +100,7 @@ class App extends React.Component {
                 <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref="message"  />
             </div>
             <div key={(8)} id="click" onClick={this.handleClick} data-url='/tchat'>OK</div>
-        </div>
+        </ScrollToBottom>
 
         )
     }

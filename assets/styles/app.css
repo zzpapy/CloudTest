@@ -318,9 +318,15 @@ body {
   border: 1px solid black;
   border-radius: 15px 15px 15px 15px;
   padding: 1em;
-  height: 50em;
-  overflow: scroll;
+  height: 25em;
+  overflow: hidden;
+  position: fixed;
+  background: white;
+  z-index: 1;
+  margin-left: 25%;
+  margin-top: 2em;
 }
+
 .listMess > div{
   margin: 0 auto;
   text-align: center;
