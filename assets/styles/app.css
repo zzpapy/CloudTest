@@ -343,9 +343,9 @@ body {
 
 .menuChat {
   position: fixed;
-  left: 26%;
+  left: 26vw;
   z-index: 1;
-  top: 60%;
+  top: 60vh;
 
 }
 
