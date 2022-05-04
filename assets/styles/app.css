@@ -12,7 +12,10 @@
   }
   .right {
     margin-left: 5em !important;
-}
+  }
+  .menuChat{
+    left :5vw !important;
+  }
   #can{
     width:100%;
   }
