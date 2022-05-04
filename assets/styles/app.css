@@ -1,4 +1,7 @@
 /* @import "~bootstrap/scss/bootstrap"; */
+p{
+  margin: 0;
+}
 body {
     background-color: black;
     font-weight: bold;
