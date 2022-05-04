@@ -349,3 +349,25 @@ body {
 
 }
 
+.flash-message {
+  box-sizing: border-box;
+	animation-name: flash, fade-out;
+	animation-duration: 0.6s, 10s;
+	animation-fill-mode: both, both;
+  animation-timing-function:ease,ease-in;
+  text-align: center; line-height: 20px;
+  padding: 10px; font-size: 16px;
+  border: 1px solid black; margin: 10px;
+  background: green;
+}
+ 
+@keyframes flash {
+	14% { font-size: 24px; color: red; background: #ff0; }
+	28% { font-size: 12px; color: initial; background: initial; }
+	42% { font-size: 18px; }
+	57% { font-size: 15px; }
+	71% { font-size: 16.5px; }
+	85% { font-size: 15.75px; }
+}
+
+@keyframes fade-out { 100% { opacity: 0; } }
