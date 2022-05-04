@@ -159,15 +159,26 @@ $.post('chart', $( "#vente").serialize(),function (json) {
         }       
 })
  
-$(".copy").on('click', (e) => {
-    e.preventDefault()
-    htmlContent = e.target.textContent
+// $(".copy").on('click', (e) => {
+//     e.preventDefault()
+//     htmlContent = e.target.textContent
+//     navigator.clipboard.writeText(htmlContent).then(() => {
+//         $(".copie").toggle(1000, function() {
+//             $(".copie").toggle(3000)
+//           })
+//     })
+// })
+
+    $(".iconCopy").on('click',(e) => {
+        console.log($(".copy").text())
+        e.preventDefault()
+    htmlContent =$(".copy").text()
     navigator.clipboard.writeText(htmlContent).then(() => {
         $(".copie").toggle(1000, function() {
             $(".copie").toggle(3000)
           })
     })
-})
+    })
 $("#write").on('click', (e) => {
     e.preventDefault()
          $(".search").removeClass("hidden")

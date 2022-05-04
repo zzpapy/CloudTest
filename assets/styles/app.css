@@ -249,8 +249,7 @@ body {
     color: black;
   }
   .phrase{
-    border: 1px solid black;
-    border-radius: 2em 2em  2em 2em;
+   
     margin: 2px;
     cursor: pointer;
     position: relative;
@@ -301,7 +300,15 @@ body {
     text-align: center;
 }
 .copy{
+  position: relative;
+  border: 1px solid black;
+  border-radius: 2em 2em  2em 2em;
   padding: 3em;
+}
+.iconCopy{
+  position: absolute;
+  top: 0.5em;
+  right: 1em
 }
 .copie{
   background-color: green;
