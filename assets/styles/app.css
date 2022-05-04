@@ -318,7 +318,6 @@ body {
   border: 1px solid black;
   border-radius: 15px 15px 15px 15px;
   padding: 1em;
-  height: 25em;
   overflow: hidden;
   position: fixed;
   background: white;
@@ -345,7 +344,7 @@ body {
   position: fixed;
   left: 26vw;
   z-index: 1;
-  top: 40vh;
+  top: 60vh;
 }
 
 .flash-message {
