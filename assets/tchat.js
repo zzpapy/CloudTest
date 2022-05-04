@@ -39,8 +39,8 @@ class App extends React.Component {
                 height:600,
                 // width: 400
               })
-           
-        };
+            };
+            this.message = React.createRef()
     }
     
     
@@ -55,7 +55,6 @@ class App extends React.Component {
             return res
         })
         .then(res=> {
-            console.log(res)
             this.setState(current => ({
                             
                 messages : res
@@ -74,13 +73,13 @@ class App extends React.Component {
     }
     handleClick = (e) => {
         e.preventDefault();
-        console.log(tchat(this.state.text))
         tchat(this.state.text).then( res => {
             this.setState(current => ({
                               
                 messages : res
               }));
-            console.log(this.state.messages)
+            this.message.current.value = ""
+            console.log(this.message.current.value)
         })
     }
     render() {
@@ -98,7 +97,7 @@ class App extends React.Component {
                )
                ):null} 
             <div key={(7)} className="input">
-                <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref="message"  />
+                <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
             </div>
             <div key={(8)} id="click" onClick={this.handleClick} data-url='/tchat'>OK</div>
         </ScrollToBottom>

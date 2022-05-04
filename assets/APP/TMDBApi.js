@@ -61,10 +61,8 @@ export function getFilmsFromApiWithSearchedText (text,page) {
 
   export function tchat(data){
     const url = "tchat"
-    console.log(data)
     return fetch(url+"?"+"message="+data)
         .then(async res => {
-          console.log(res)
           return res.json()
         })
         .then(async res => {
@@ -78,7 +76,6 @@ export function getFilmsFromApiWithSearchedText (text,page) {
     try {
       const res = await fetch(url);
       const res_1 = await res.json();
-      console.log(res_1);
       return await res_1;
     } catch (er) {
       return console.error(er);
