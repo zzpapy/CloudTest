@@ -58,6 +58,7 @@ class App extends React.Component {
             return res
         })
         .then(res=> {
+            console.log(res.message.length)
             this.setState(current => ({
                             
                 messages : res
