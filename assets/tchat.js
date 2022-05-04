@@ -26,6 +26,7 @@ import ReactDOM from 'react-dom';
 import Message from './components/Message';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { css } from '@emotion/css'
+import InputEmoji from 'react-input-emoji'
 
 class App extends React.Component {
    
@@ -58,7 +59,6 @@ class App extends React.Component {
             return res
         })
         .then(res=> {
-            console.log(res.message.length)
             this.setState(current => ({
                             
                 messages : res
@@ -86,6 +86,7 @@ class App extends React.Component {
             console.log(this.message.current.value)
         })
     }
+
     render() {
     return (
         <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}>                
@@ -100,8 +101,10 @@ class App extends React.Component {
                    </Message>
                )
                ):null} 
-            <div key={(7)} className="input">
+            <div key={(7)} className="input"> 
+            <form onSubmit={this.handleClick}>               
                 <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
+            </form>
             </div>
             <div key={(8)} id="click" onClick={this.handleClick} data-url='/tchat'>OK</div>
         </ScrollToBottom>
