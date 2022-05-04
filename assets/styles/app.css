@@ -16,6 +16,9 @@
   .menuChat{
     left :5vw !important;
   }
+  .mini{
+    width: 10% !important;
+  }
   #can{
     width:100%;
   }
