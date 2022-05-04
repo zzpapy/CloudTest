@@ -336,8 +336,8 @@ body {
 }
 .mess{
   border: 1px solid black;
-  border-radius: 15px 15px 15px 15px;
-  padding: 1em;
+  /* border-radius: 15px 15px 15px 15px; */
+  padding: 0.5em 0 0;
   margin-top: 1em;
 }
 
@@ -371,3 +371,14 @@ body {
 }
 
 @keyframes fade-out { 100% { opacity: 0; } }
+
+.titleChat{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: 0 1em;
+}
+.chatText{
+  padding: 1em;
+  background-color: lightblue;
+}

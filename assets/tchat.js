@@ -87,11 +87,12 @@ class App extends React.Component {
     return (
         <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}>                
             {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
-                ({ index,user, text }) =>  (
+                ({ index,user, text, date }) =>  (
                     <Message
                     key={index}
                     user={user}
                     message={text}
+                    date={date}
                     >
                    </Message>
                )
