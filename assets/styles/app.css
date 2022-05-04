@@ -381,3 +381,25 @@ body {
   padding: 1em;
   background-color: lightblue;
 }
+::-webkit-scrollbar {
+  width: 5px;
+  margin-left: 1em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px lightblue; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightblue; 
+  scrollbar-width: 1px;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}

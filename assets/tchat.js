@@ -37,6 +37,9 @@ class App extends React.Component {
             messages :{},
             ROOT_CSS : css({
                 height:600,
+                webkitScrollbar : {
+                    width: 20
+                  },
                 // width: 400
               })
             };
