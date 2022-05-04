@@ -174,9 +174,14 @@ $.post('chart', $( "#vente").serialize(),function (json) {
         e.preventDefault()
     htmlContent =$(".copy").text()
     navigator.clipboard.writeText(htmlContent).then(() => {
-        $(".copie").toggle(1000, function() {
-            $(".copie").toggle(3000)
-          })
+        $(".copie").slideDown(function() {
+            setTimeout(function() {
+                $(".copie").slideUp();
+            }, 5000);
+        });
+        // $(".copie").toggle(1000, function() {
+        //     $(".copie").toggle(3000)
+        //   })
     })
     })
 $("#write").on('click', (e) => {
@@ -185,7 +190,10 @@ $("#write").on('click', (e) => {
         $(".write").removeClass("hidden")
         $(".read").addClass("hidden")
         $("#write").addClass("mini")
+        $("#write").addClass("colorMenu")
         $("#read").addClass("mini")
+        
+        $("#read").hasClass("colorMenu") ?  $("#read").removeClass("colorMenu") : null
 })
 $("#read").on('click', (e) => {
     e.preventDefault()
@@ -194,6 +202,8 @@ $("#read").on('click', (e) => {
         $(".write").addClass("hidden")
         $("#read").addClass("mini")
         $("#write").addClass("mini")
+        $("#read").addClass("colorMenu")
+        $("#write").hasClass("colorMenu") ?  $("#write").removeClass("colorMenu") : null
         
 })
 $("#chat").on('click', (e) => {

@@ -311,10 +311,11 @@ body {
   right: 1em
 }
 .copie{
-  background-color: green;
+  background-color: limegreen;
   position: fixed;
-  top:0;
-  width: 100%;
+  width: 25%;
+  top:30vh;
+  left:50%;
 }
 .search{
   width: 25%;
@@ -357,7 +358,7 @@ body {
   top: 60vh;
 }
 
-.flash-message {
+/* .flash-message {
   box-sizing: border-box;
 	animation-name: flash, fade-out;
 	animation-duration: 0.6s, 10s;
@@ -378,7 +379,7 @@ body {
 	85% { font-size: 15.75px; }
 }
 
-@keyframes fade-out { 100% { opacity: 0; } }
+@keyframes fade-out { 100% { opacity: 0; } } */
 
 .titleChat{
   display: flex;
