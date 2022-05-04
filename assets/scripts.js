@@ -258,13 +258,12 @@ $(".delete").on('click', (e) => {
    let confirmAction = confirm("Etes vous sure de vouloir supprimer le texte ?");
     if (confirmAction) {
         $.post('delete', $( "#"+id).serialize(),function (json) {
-            
-        })        
+        $( "#"+id).parent().remove()            
+    })        
         alert("Etes vous certain !!!");
     } else {
         alert("Suppression annulée");
     }
-$( "#"+id).parent().remove()
        
 })
 $(function() {
