@@ -87,16 +87,25 @@ class App extends React.Component {
         })
     }
 
+    messClick = (e) => {
+        e.preventDefault();
+        
+            console.log(e)
+    }
+
     render() {
     return (
         <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}>                
             {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
-                ({ index,user, text, date }) =>  (
+                ({ index,user, text, date,id, userId }) =>  (
                     <Message
                     key={index}
                     user={user}
+                    userId={userId}
                     message={text}
                     date={date}
+                    id={id}
+                    onClick={this.messClick}
                     >
                    </Message>
                )

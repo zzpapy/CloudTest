@@ -1,4 +1,29 @@
 /* @import "~bootstrap/scss/bootstrap"; */
+
+@media screen and (min-width: 0px) and (max-width: 768px){
+
+  .homeConatainer{
+    /* display:block; */
+    padding:0 1em;
+  }
+  .listMess{
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  .right {
+    margin-left: 5em !important;
+}
+  #can{
+    width:100%;
+  }
+  .visible{
+    left:1em;      
+  }
+  .login{
+    width: 80%;
+  }
+
+} 
 p{
   margin: 0;
 }
@@ -227,23 +252,7 @@ body {
     background-image: linear-gradient(-270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 20%, #FFFFFF 80%, rgba(255,255,255,0.00) 100%);
   }
   
-  @media screen and (min-width: 0px) and (max-width: 768px){
 
-    .homeConatainer{
-      /* display:block; */
-      padding:0 1em;
-    }
-    #can{
-      width:100%;
-    }
-    .visible{
-      left:1em;      
-    }
-    .login{
-      width: 80%;
-    }
-  
-  } 
   .textcontainer{
     background-color: white;
     color: black;
@@ -356,8 +365,11 @@ body {
   /* border-radius: 15px 15px 15px 15px; */
   padding: 0.5em 0 0;
   margin-top: 1em;
+  width : 75%
 }
-
+.right{
+  margin-left: 14em;
+}
 .menuChat {
   position: fixed;
   left: 26vw;
