@@ -7,7 +7,7 @@ import React from 'react';
             <p className="name">{user} </p>
             <p className="name">{date}</p>           
         </div>       
-        <div className="chatText">{message}</div>
+        <div className="chatText" >{message}</div>
         
      </div>
  )};
