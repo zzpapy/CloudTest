@@ -377,6 +377,7 @@ body {
   margin-left: 14em;
 }
 .menuChat {
+  z-index: 100;
   position: fixed;
   left: 26vw;
   z-index: 1;
