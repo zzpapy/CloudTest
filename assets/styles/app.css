@@ -205,10 +205,10 @@ body {
     
    
   }
-  button:hover{
-    /* background-image: none; */
+  /* button:hover{
+    background-image: none;
     
-  }
+  } */
   .but{
     background-image: linear-gradient(-180deg, #ffffff 0%, #05440a 100%);
     box-shadow: 0 1rem 1.25rem 0 rgba(0,0,0,0.50),
