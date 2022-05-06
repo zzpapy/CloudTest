@@ -161,7 +161,6 @@ $.post('chart', $( "#vente").serialize(),function (json) {
  
 $(".copy").on('click', (e) => {
     e.preventDefault()
-    console.log(e.target,e.target.id,$(this))
     htmlContent = e.target.textContent
     navigator.clipboard.writeText(htmlContent).then(() => {
         $(".copie").toggle(1000, function() {
@@ -170,8 +169,8 @@ $(".copy").on('click', (e) => {
     })
 })
 
-    $(".iconCopy").on('click',(e) => {
-        e.stopPropagation();
+$(".iconCopy").on('click',(e) => {
+    e.stopPropagation();
     htmlContent =$("."+e.target.id).text()
     navigator.clipboard.writeText(htmlContent).then(() => {
         $(".copie").slideDown(function() {
@@ -179,11 +178,8 @@ $(".copy").on('click', (e) => {
                 $(".copie").slideUp();
             }, 5000);
         });
-        // $(".copie").toggle(1000, function() {
-        //     $(".copie").toggle(3000)
-        //   })
     })
-    })
+})
 $("#write").on('click', (e) => {
     e.preventDefault()
          $(".search").removeClass("hidden")
