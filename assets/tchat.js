@@ -94,21 +94,24 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.state.messages.message)
     return (
         <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}>                
             {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
-                ({ index,user, text, date,id, userId }) =>  (
-                    <Message
-                    key={index}
-                    user={user}
-                    userId={userId}
-                    message={text}
-                    date={date}
-                    id={id}
-                    onClick={this.messClick}
-                    >
-                   </Message>
-               )
+                ({ index,user, text, date,id, userId,messId }) =>  {
+                    return (
+                        <Message
+                            key={messId}
+                            user={user}
+                            userId={userId}
+                            message={text}
+                            date={date}
+                            id={id}
+                            onClick={this.messClick}
+                        >
+                        </Message>
+                    );
+                }
                ):null} 
             <div key={(7)} className="input"> 
             <form onSubmit={this.handleClick}>               
