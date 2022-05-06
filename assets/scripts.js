@@ -159,20 +159,19 @@ $.post('chart', $( "#vente").serialize(),function (json) {
         }       
 })
  
-// $(".copy").on('click', (e) => {
-//     e.preventDefault()
-//     console.log(e.target,e.target.id,$(this))
-//     htmlContent = e.target.textContent
-//     navigator.clipboard.writeText(htmlContent).then(() => {
-//         $(".copie").toggle(1000, function() {
-//             $(".copie").toggle(3000)
-//           })
-//     })
-// })
+$(".copy").on('click', (e) => {
+    e.preventDefault()
+    console.log(e.target,e.target.id,$(this))
+    htmlContent = e.target.textContent
+    navigator.clipboard.writeText(htmlContent).then(() => {
+        $(".copie").toggle(1000, function() {
+            $(".copie").toggle(3000)
+          })
+    })
+})
 
     $(".iconCopy").on('click',(e) => {
-        console.log(e.target.id)
-        e.preventDefault()
+        e.stopPropagation();
     htmlContent =$("."+e.target.id).text()
     navigator.clipboard.writeText(htmlContent).then(() => {
         $(".copie").slideDown(function() {
