@@ -94,7 +94,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.state.messages.message)
     return (
         <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}>                
             {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
