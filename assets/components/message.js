@@ -2,7 +2,6 @@ import React from 'react';
  
  const Message = ({ index,user,message,date,id,userId }) => {
      let right = ""
-     console.log(userId == id)
      right = userId == id ? "mess right":"mess"
      return (
      <div key={index} className= {right} id={id}> 

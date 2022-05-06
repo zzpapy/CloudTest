@@ -50,10 +50,10 @@
                         <input type="hidden" name="id" value="{{ phrase.id }}">
                     </form>
                     <div class="delete" data-id="{{ phrase.id }}"  value="{{ phrase.id }}">X</div>
-                    <div class="copy copy_{{phrase.id}}">
-                        {# <div class="iconCopy" data-id="copy_{{phrase.id}}">
-                            <i class="fa-regular fa-copy" data-id="copy_{{phrase.id}}"></i>
-                        </div> #}
+                    <div class="copy copy_{{phrase.id}}" >
+                        <div class="iconCopy" >
+                            <i class="fa-regular fa-copy" id="copy_{{phrase.id}}"></i>
+                        </div>
                         {{ phrase.texte|raw }}
                     </div>
                 </div>

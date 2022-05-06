@@ -159,31 +159,32 @@ $.post('chart', $( "#vente").serialize(),function (json) {
         }       
 })
  
-$(".copy").on('click', (e) => {
-    e.preventDefault()
-    htmlContent = e.target.textContent
-    navigator.clipboard.writeText(htmlContent).then(() => {
-        $(".copie").toggle(1000, function() {
-            $(".copie").toggle(3000)
-          })
-    })
-})
+// $(".copy").on('click', (e) => {
+//     e.preventDefault()
+//     console.log(e.target,e.target.id,$(this))
+//     htmlContent = e.target.textContent
+//     navigator.clipboard.writeText(htmlContent).then(() => {
+//         $(".copie").toggle(1000, function() {
+//             $(".copie").toggle(3000)
+//           })
+//     })
+// })
 
-    // $(".iconCopy").on('click',(e) => {
-    //     console.log(e)
-    //     e.preventDefault()
-    // htmlContent =$(".copy").text()
-    // navigator.clipboard.writeText(htmlContent).then(() => {
-    //     $(".copie").slideDown(function() {
-    //         setTimeout(function() {
-    //             $(".copie").slideUp();
-    //         }, 5000);
-    //     });
-    //     // $(".copie").toggle(1000, function() {
-    //     //     $(".copie").toggle(3000)
-    //     //   })
-    // })
-    // })
+    $(".iconCopy").on('click',(e) => {
+        console.log(e.target.id)
+        e.preventDefault()
+    htmlContent =$("."+e.target.id).text()
+    navigator.clipboard.writeText(htmlContent).then(() => {
+        $(".copie").slideDown(function() {
+            setTimeout(function() {
+                $(".copie").slideUp();
+            }, 5000);
+        });
+        // $(".copie").toggle(1000, function() {
+        //     $(".copie").toggle(3000)
+        //   })
+    })
+    })
 $("#write").on('click', (e) => {
     e.preventDefault()
          $(".search").removeClass("hidden")
