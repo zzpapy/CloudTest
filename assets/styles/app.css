@@ -374,7 +374,7 @@ body {
   width : 75%
 }
 .right{
-  margin-left: 14em;
+  float:right;
 }
 .menuChat {
   z-index: 100;
