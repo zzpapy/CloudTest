@@ -30,14 +30,14 @@ class TchatController extends AbstractController
         $listMess = [];
 
         foreach ($messages as $key => $value) {
-            if($key % 2 == 0){
+            // if($key % 2 == 0){
                 $id = $value->getUser()->getId();
                 $date = date_format($value->getCreatedAt(), 'd-m-Y H:i:s');
                 $user = $value->getUser()->getUsername();
                 $text = $value->getMessage();
                 array_push($listMess,["user" => $user,"text" => $text, "date" => $date, "id" => $id]);
 
-            }
+            // }
         };
         
 
@@ -57,7 +57,7 @@ class TchatController extends AbstractController
         $listMess = [];
         
         foreach ($messages as $key => $value) {
-            if($key % 2 == 0){
+            // if($key % 2 == 0){
                 $id = $value->getUser()->getId();
                 $messId = $value->getId();
                 $userId = $this->getUser()->getId();
@@ -67,7 +67,7 @@ class TchatController extends AbstractController
                 $text = $value->getMessage();
                 array_push($listMess,["user" => $user,"text" => $text, "date" =>$date, "id" => $id, "userId" => $userId,"messId" => $messId]);
 
-            }
+            // }
         };
         
         // dump($listMess);die;

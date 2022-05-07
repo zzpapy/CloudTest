@@ -25,9 +25,6 @@ class PhraseController extends AbstractController
         $phraseForm->handleRequest($request);
         $id = $this->getUser()->getId();
         $listText = $doctrine->getRepository(Phrase::class)->listText($id);
-        dump($phraseForm->getExtraData());
-        dump($listText);
-            dump($phraseForm);
         if ($phraseForm->isSubmitted() && $phraseForm->isValid()) {
             $entityManager = $doctrine->getManager();
             $phrase->setUser($this->getUser());
@@ -57,7 +54,6 @@ class PhraseController extends AbstractController
     {
         $id = $request->request->get('id');
         $phrase = $doctrine->getRepository(Phrase::class)->find($id);
-        // dump($id,$phrase);die;
         $entityManager = $doctrine->getManager();
         $entityManager->remove($phrase);
         $entityManager->flush();
