@@ -77,14 +77,16 @@ class App extends React.Component {
     }
     handleClick = (e) => {
         e.preventDefault();
-        tchat(this.state.text).then( res => {
-            this.setState(current => ({
-                              
-                messages : res
-              }));
-            this.message.current.value = ""
-            console.log(this.message.current.value)
-        })
+        if(/\S/.test(this.state.text) && !/^\s+$/.test(this.state.text) && this.state.text.match(/^\s+$/) === null){
+            tchat(this.state.text).then( res => {
+                this.setState(current => ({
+                                  
+                    messages : res
+                  }));
+                this.message.current.value = ""
+                console.log(this.message.current.value)
+            })
+        }
     }
 
     messClick = (e) => {
