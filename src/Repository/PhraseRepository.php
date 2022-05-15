@@ -47,7 +47,6 @@ class PhraseRepository extends ServiceEntityRepository
 
     public function listText($value)
     {
-        dump($value);
         $qb = $this->createQueryBuilder('s')
             ->andWhere('s.user = :val')
             ->setParameter('val', $value);
