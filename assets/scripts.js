@@ -192,6 +192,7 @@ $("#write").on('click', (e) => {
         $("#read").hasClass("colorMenu") ?  $("#read").removeClass("colorMenu") : null
 })
 $("#read").on('click', (e) => {
+    console.log(e)
     e.preventDefault()
     $(".search").removeClass("hidden")
         $(".read").removeClass("hidden")
@@ -262,9 +263,9 @@ $(".delete").on('click', (e) => {
     }
        
 })
-$( "#action").on('submit', (e) => {
-    e.stopPropagation();
-})
+// $( "#action").on('submit', (e) => {
+//     e.stopPropagation();
+// })
 $( "#action").on('submit', (e) => {
     
     e.preventDefault()
