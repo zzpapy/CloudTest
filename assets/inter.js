@@ -21,9 +21,9 @@
 // })
 
 import React , { useEffect, useState }from 'react';
-import { tchat, init } from './APP/TMDBApi'
+import { tchat, listInter, inter } from './APP/TMDBApi'
 import ReactDOM from 'react-dom';
-import Message from './components/Message';
+import Interactions from './components/Interactions';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { css } from '@emotion/css'
 import InputEmoji from 'react-input-emoji'
@@ -32,7 +32,7 @@ class App extends React.Component {
    
     constructor(props) {
         super(props);   
-        this.handleActorKeyUp = this.keyUpHandlerActor.bind(this, 'message');     
+        // this.handleActorKeyUp = this.keyUpHandlerActor.bind(this, 'message');     
         this.state = {
             text : "",
             messages :{},
@@ -55,7 +55,7 @@ class App extends React.Component {
                 ,5000)
         }
     code = () => {
-        init().then(res => {
+        listInter().then(res => {
             return res
         })
         .then(res=> {
@@ -67,6 +67,7 @@ class App extends React.Component {
         })
     } 
     keyUpHandlerActor = (refName, e) => {
+        console.log(refName.target.value)
         this.setState(current => ({
                               
             text :refName.target.value
@@ -77,14 +78,15 @@ class App extends React.Component {
     }
     handleClick = (e) => {
         e.preventDefault();
+        console.log(this.state.text)
         if(/\S/.test(this.state.text) && !/^\s+$/.test(this.state.text) && this.state.text.match(/^\s+$/) === null){
-            tchat(this.state.text).then( res => {
+            inter(this.state.text).then( res => {
+                console.log(res)
                 this.setState(current => ({
                                   
                     messages : res
                   }));
                 this.message.current.value = ""
-                console.log(this.message.current.value)
             })
         }
     }
@@ -96,13 +98,13 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.state.messages)
     return (
         <React.StrictMode>             
-        <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}> 
             {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
                 ({ index,user, text, date,id, userId,messId }) =>  {
                     return (
-                        <Message
+                        <Interactions
                             key={messId}
                             user={user}
                             userId={userId}
@@ -111,23 +113,23 @@ class App extends React.Component {
                             id={id}
                             onClick={this.messClick}
                         >
-                        </Message>
+                        </Interactions>
                     );
                 }
                 ):null} 
             <div key={(7)} className="input"> 
-            <form onSubmit={this.handleClick}>               
-                <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
-            </form>
+                <form onSubmit={this.handleClick}>               
+                    <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
+                </form>
             </div>
-            <div key={(8)} id="click" onClick={this.handleClick} data-url='/tchat'>OK</div>
-        </ScrollToBottom>
+            <div key={(8)} id="click" onClick={this.handleClick} data-url='/listInter'>OK</div>
+        
                 </React.StrictMode>
         )
     }
     
 }
-if(document.getElementById('listMess') != null){
-    ReactDOM.render(<App />, document.getElementById('listMess'));
+if(document.getElementById('inter') != null){
+    ReactDOM.render(<App />, document.getElementById('inter'));
 
 }

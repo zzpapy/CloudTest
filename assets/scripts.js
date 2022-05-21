@@ -262,6 +262,26 @@ $(".delete").on('click', (e) => {
     }
        
 })
+$( "#action").on('submit', (e) => {
+    e.stopPropagation();
+})
+$( "#action").on('submit', (e) => {
+    
+    e.preventDefault()
+    id = $(e.target).serialize()
+    console.log($(e.target).serialize())
+    
+    $.post('action', id,function (json) {
+        JSON.parse(json).actions.forEach(element => {
+            $(".interactions").html()
+            $(".interactions").append(
+                '<div>'+element.date+' - '+element.inter+'</div>'
+                )
+            });
+            console.log( JSON.parse(json).actions)            
+        })
+        $(".inter").val('')
+    })
 $(function() {
 
     var mark = function() {
@@ -295,6 +315,12 @@ $(function() {
     $(".listMess").hasClass("hidden") ?  $(".listMess").removeClass("hidden") : $(".listMess").addClass("hidden")
     $(".menuChat").hasClass("hidden") ?  $(".menuChat").removeClass("hidden") : $(".menuChat").addClass("hidden")
     $('.listMess')[0].scrollIntoView(false)
+   
+})
+$(".interAction").on('click', (e) => {
+    e.preventDefault()
+    console.log($("#inter"))
+    $("#inter").hasClass("hidden") ?  $("#inter").removeClass("hidden") : $("#inter").addClass("hidden")
    
 })
   

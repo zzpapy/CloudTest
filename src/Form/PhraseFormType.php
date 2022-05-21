@@ -19,6 +19,10 @@ class PhraseFormType extends AbstractType
                 'mail' => 'mail',
                 'divers' => 'divers',
             ],
+            'choice_attr' => function($choice, $key, $value) {
+                // adds a class like attending_yes, attending_no, etc
+                return ['class' => 'category'];
+            },
             'expanded' => true,
           'multiple' => false,
         ])

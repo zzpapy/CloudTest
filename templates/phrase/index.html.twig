@@ -7,6 +7,7 @@
 <div class="listMessage"></div>
 <div class="listMess hidden" id="listMess"></div>
 <div class="chatVisible menuChat hidden"><i class="fa-brands fa-rocketchat fa-2x"></i></div>
+<div class="interAction">INTER</div>
 {# <form action="" id="tchat">
     <input type="text" name="message">
     <input type="hidden" name="user" value="{{app.user.id}}">
@@ -14,6 +15,17 @@
 <div id="click" data-url={{ path('app_tchat')}}>OK</div> #}
     <div class="copie hidden flash-message">
         <p>Texte copié !!!</p>
+    </div>
+    <div id="inter" class="hidden">
+    <form action="" id="action">
+        <input type="text" class="inter" data-id="action" name="value" value="">
+    </form>
+    </div>
+    <div class="interactions"></div>
+    <div class="" id="read">
+         {# {{form_start(interactionForm,{'attr': {'id':"action","class" :"" }})}}
+         {{ form_widget(interactionForm.value, { 'attr': {'class': '', 'id':''}, 'label_attr': {'class': ''} }) }}
+         {{form_end(interactionForm)}} #}
     </div>
     <div class="menu">
         <div class="menuItem" id="write"><i class="fa-solid fa-pen"></i></div>
@@ -31,8 +43,10 @@
         <button class=" but type add-another-collection-widget" <i class="fa-solid fa-hand-peace"></i></button>
         </div>
         <div class="text">
-            {{ form_widget(phraseForm.category, { 'attr': {'class': '', 'id':''} }) }}
-            <input type="textarea" id="phrase_form_Texte" name="phrase_form[Texte]" value="" class="text" />
+            <div>
+                {{ form_widget(phraseForm.category, { 'attr': {'class': 'radio', 'id':''}, 'label_attr': {'class': 'CUSTOM_LABEL_CLASS'} }) }}
+                <input type="textarea" id="phrase_form_Texte" name="phrase_form[Texte]" value="" class="text" />
+            </div>
         </div>
         {{form_end(phraseForm)}}
     </div>

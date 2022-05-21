@@ -15,5 +15,7 @@ import './scripts'
 
 import './tchat'
 
+import './inter'
+
 import './reactApp'
  

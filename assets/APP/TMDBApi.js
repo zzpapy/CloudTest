@@ -71,6 +71,18 @@ export function getFilmsFromApiWithSearchedText (text,page) {
         })
         .catch(er => console.error(er))
   }
+  export function inter(data){
+    const url = "action"
+    return fetch(url+"?"+"message="+data)
+        .then(async res => {
+          return res.json()
+        })
+        .then(async res => {
+          return res
+          
+        })
+        .catch(er => console.error(er))
+  }
   export async function init(data){
     const url = "init"
     try {
@@ -80,6 +92,18 @@ export function getFilmsFromApiWithSearchedText (text,page) {
     } catch (er) {
       return console.error(er);
     }
+  }
+
+    export async function listInter(data){
+      const url = "listInter"
+      // try {
+        const res = await fetch(url);
+        console.log(res)
+        const res_1 = await res.json();
+        return await res_1;
+      // } catch (er) {
+      //   return console.error(er);
+      // }
   }
 
 

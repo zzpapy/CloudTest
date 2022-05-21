@@ -42,12 +42,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class)]
     private $messages;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: InterAction::class)]
+    private $interActions;
+
     public function __construct()
     {
         $this->sales = new ArrayCollection();
         $this->phrases = new ArrayCollection();
         $this->phrase1 = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->interActions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -253,6 +257,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($message->getUser() === $this) {
                 $message->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, InterAction>
+     */
+    public function getInterActions(): Collection
+    {
+        return $this->interActions;
+    }
+
+    public function addInterAction(InterAction $interAction): self
+    {
+        if (!$this->interActions->contains($interAction)) {
+            $this->interActions[] = $interAction;
+            $interAction->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInterAction(InterAction $interAction): self
+    {
+        if ($this->interActions->removeElement($interAction)) {
+            // set the owning side to null (unless already changed)
+            if ($interAction->getUser() === $this) {
+                $interAction->setUser(null);
             }
         }
 

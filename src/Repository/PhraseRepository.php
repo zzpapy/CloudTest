@@ -42,7 +42,7 @@ class PhraseRepository extends ServiceEntityRepository
         $this->_em->remove($entity);
         if ($flush) {
             $this->_em->flush();
-        }
+        } 
     }
 
     public function listText($value)
