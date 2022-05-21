@@ -118,6 +118,7 @@ class App extends React.Component {
                 }
                 ):null} 
             <div key={(7)} className="input"> 
+            
                 <form onSubmit={this.handleClick}>               
                     <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
                 </form>
