@@ -15,7 +15,7 @@ class App extends React.Component {
             text : "",
             messages :{},
             ROOT_CSS : css({
-                height:130,
+                height:100,
                 webkitScrollbar : {
                     width: 20
                   },
@@ -93,7 +93,7 @@ class App extends React.Component {
                     <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
                 </form>
             </div>
-            <div key={(8)} id="click" onClick={this.handleClick} data-url='/listInter'>OK</div>
+            {/* <div key={(8)} id="click" onClick={this.handleClick} data-url='/listInter'>OK</div> */}
         </ScrollToBottom>
                 </React.StrictMode>
         )
