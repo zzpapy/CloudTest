@@ -1,25 +1,3 @@
-// $("#click").on('click', (e) => {
-//     e.preventDefault()
-//     let url = $(e.target).data('url')
-//     $.post(url, $( "#tchat").serialize(),function (json) {
-//         console.log(Object.values(json.message))
-//         $(".listMess").html("")
-//         Object.values(json.message).forEach(element => {
-//             $(".listMess").append( "<div><p>"+element.user+"</p><p>"+element.text+"</p></div>")
-            
-//         });
-//         console.log(json.message)
-       
-       
-//     },"json" ).done( function (result) { 
-//         console.log(result.message)
-//         result.message.forEach(element => {
-//             console.log(element)
-            
-//         });
-//     })
-// })
-
 import React , { useEffect, useState }from 'react';
 import { tchat, listInter, inter } from './APP/TMDBApi'
 import ReactDOM from 'react-dom';
@@ -37,7 +15,7 @@ class App extends React.Component {
             text : "",
             messages :{},
             ROOT_CSS : css({
-                height:600,
+                height:130,
                 webkitScrollbar : {
                     width: 20
                   },
@@ -67,21 +45,15 @@ class App extends React.Component {
         })
     } 
     keyUpHandlerActor = (refName, e) => {
-        console.log(refName.target.value)
         this.setState(current => ({
                               
             text :refName.target.value
           }));
-        // if(e.target.value.length > 0){
-        //    console.log(e.target.value.length)
-        // }
     }
     handleClick = (e) => {
         e.preventDefault();
-        console.log(this.state.text)
         if(/\S/.test(this.state.text) && !/^\s+$/.test(this.state.text) && this.state.text.match(/^\s+$/) === null){
             inter(this.state.text).then( res => {
-                console.log(res)
                 this.setState(current => ({
                                   
                     messages : res
@@ -93,14 +65,12 @@ class App extends React.Component {
 
     messClick = (e) => {
         e.preventDefault();
-        
-            console.log(e)
     }
 
     render() {
-        console.log(this.state.messages)
     return (
-        <React.StrictMode>             
+        <React.StrictMode>  
+             <ScrollToBottom className={this.state.ROOT_CSS} key={(6)}>            
             {Object.keys(this.state.messages).length != 0 ? this.state.messages.message.map(
                 ({ index,user, text, date,id, userId,messId }) =>  {
                     return (
@@ -118,13 +88,13 @@ class App extends React.Component {
                 }
                 ):null} 
             <div key={(7)} className="input"> 
-            
+
                 <form onSubmit={this.handleClick}>               
                     <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
                 </form>
             </div>
             <div key={(8)} id="click" onClick={this.handleClick} data-url='/listInter'>OK</div>
-        
+        </ScrollToBottom>
                 </React.StrictMode>
         )
     }

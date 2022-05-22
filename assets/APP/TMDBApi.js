@@ -96,14 +96,13 @@ export function getFilmsFromApiWithSearchedText (text,page) {
 
     export async function listInter(data){
       const url = "listInter"
-      // try {
+      try {
         const res = await fetch(url);
-        console.log(res)
         const res_1 = await res.json();
         return await res_1;
-      // } catch (er) {
-      //   return console.error(er);
-      // }
+      } catch (er) {
+        return console.error(er);
+      }
   }
 
 

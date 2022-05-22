@@ -192,7 +192,6 @@ $("#write").on('click', (e) => {
         $("#read").hasClass("colorMenu") ?  $("#read").removeClass("colorMenu") : null
 })
 $("#read").on('click', (e) => {
-    console.log(e)
     e.preventDefault()
     $(".search").removeClass("hidden")
         $(".read").removeClass("hidden")
@@ -270,7 +269,6 @@ $( "#action").on('submit', (e) => {
     
     e.preventDefault()
     id = $(e.target).serialize()
-    console.log($(e.target).serialize())
     
     $.post('action', id,function (json) {
         JSON.parse(json).actions.forEach(element => {
@@ -278,8 +276,7 @@ $( "#action").on('submit', (e) => {
             $(".interactions").append(
                 '<div>'+element.date+' - '+element.inter+'</div>'
                 )
-            });
-            console.log( JSON.parse(json).actions)            
+            });         
         })
         $(".inter").val('')
     })
@@ -320,7 +317,6 @@ $(function() {
 })
 $(".interAction").on('click', (e) => {
     e.preventDefault()
-    console.log($("#inter"))
     $("#inter").hasClass("hidden") ?  $("#inter").removeClass("hidden") : $("#inter").addClass("hidden")
    
 })
