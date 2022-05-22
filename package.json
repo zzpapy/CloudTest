@@ -20,6 +20,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "date-fns": "^2.28.0",
         "emoji-picker-react": "^3.5.1",
         "emotion": "^11.0.0",
         "prop-types": "^15.8.1",

@@ -5,6 +5,9 @@ import Interactions from './components/Interactions';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { css } from '@emotion/css'
 import InputEmoji from 'react-input-emoji'
+import { format } from "date-fns"
+import { fr } from 'date-fns/locale'
+
 
 class App extends React.Component {
    
@@ -20,14 +23,15 @@ class App extends React.Component {
                     width: 20
                   },
                 // width: 400
-              })
+              }),
+            date : format(new Date(), "d-MMMM-yyyy", { locale: fr })
             };
             this.message = React.createRef()
     }
     
     
     componentDidMount() {
-        
+        console.log(this.state.date)
            setInterval(
                  ()=>{ this.code()}
                 ,5000)
@@ -92,6 +96,7 @@ class App extends React.Component {
                 <form onSubmit={this.handleClick}>               
                     <input type="text" onKeyUp={this.keyUpHandlerActor} placeholder="" ref={this.message}  />
                 </form>
+                <h6>INTERACTIONS DU {this.state.date}</h6>
             </div>
             {/* <div key={(8)} id="click" onClick={this.handleClick} data-url='/listInter'>OK</div> */}
         </ScrollToBottom>

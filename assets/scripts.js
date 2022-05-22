@@ -115,7 +115,7 @@ $.post('chart', $( "#vente").serialize(),function (json) {
     var dataKey = []
     datas.forEach((item, index) => {
         date = new Date(Date.parse(keys[index]))
-       date = date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear()
+        date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear()
         values = [...values,item.length]
         dataKey = [...dataKey, date+"  " +item.length]
       })
