@@ -107,6 +107,7 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $.post('chart', $( "#vente").serialize(),function (json) {
+    console.log(json.tabSales) 
     $( ".result" ).html( json.count );
     $( ".monthSales" ).html( json.monthSales );
     var keys = Object.keys(json.tabSales)
@@ -162,23 +163,44 @@ $.post('chart', $( "#vente").serialize(),function (json) {
 $(".copy").on('click', (e) => {
     e.preventDefault()
     htmlContent = e.target.textContent
-    navigator.clipboard.writeText(htmlContent).then(() => {
-        $(".copie").toggle(1000, function() {
-            $(".copie").toggle(3000)
-          })
-    })
-})
-
-$(".iconCopy").on('click',(e) => {
-    e.stopPropagation();
-    htmlContent =$("."+e.target.id).text()
-    navigator.clipboard.writeText(htmlContent).then(() => {
+    window.getSelection()
+    .selectAllChildren(
+        e.target
+        );
+        document.execCommand('Copy');
         $(".copie").slideDown(function() {
             setTimeout(function() {
                 $(".copie").slideUp();
             }, 5000);
         });
-    })
+    // navigator.clipboard.writeText(htmlContent).then(() => {
+    //     $(".copie").toggle(1000, function() {
+    //         $(".copie").toggle(3000)
+    //       })
+    // })
+})
+
+$(".iconCopy").on('click',(e) => {
+    e.stopPropagation();
+    htmlContent =  document.querySelector ("."+e.target.id)
+    console.log(htmlContent)
+    window.getSelection()
+    .selectAllChildren(
+        htmlContent
+        );
+        document.execCommand('Copy');
+        $(".copie").slideDown(function() {
+            setTimeout(function() {
+                $(".copie").slideUp();
+            }, 5000);
+        });
+    // navigator.clipboard.writeText(htmlContent).then(() => {
+    //     $(".copie").slideDown(function() {
+    //         setTimeout(function() {
+    //             $(".copie").slideUp();
+    //         }, 5000);
+    //     });
+    // })
 })
 $("#write").on('click', (e) => {
     e.preventDefault()

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateInterval;
 use App\Entity\Sales;
 use App\Form\SalesFormType;
 use App\Repository\SalesRepository; 
@@ -27,7 +28,8 @@ class SasController extends AbstractController
             $dateSearch = (new \DateTimeImmutable('NOW'));
             $monthSales = $doctrine->getRepository(Sales::class)->salesByMonth($id,$startDate);
             $startDate = $startDate->modify('first day of this month')->setTime(00, 00, 00);
-           
+            $lastDay = $startDate->modify('last day of this month')->setTime(23, 59, 99);
+            $nbrDayMonth = $startDate->diff($lastDay)->format('%R%a days');
 
             $allSales = $doctrine->getRepository(Sales::class)->findBY(["User" => $this->getUser()->getId()]);
             if(count($allSales)  != 0 ){
@@ -45,6 +47,26 @@ class SasController extends AbstractController
                         array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
                     }
                 }
+                
+                $i =0;
+                $str = str_replace("+","",$nbrDayMonth);
+                $str1 = str_replace(" ","",$str);
+                $str3 = str_replace("days","",$str1);
+                $nbrDay =  intval($str3);
+                
+                dump(intval($str3),$nbrDayMonth);
+                $tableMonth = [];
+                while($i < $nbrDay){
+                     $test = $startDate->add(new DateInterval('P'.$i.'D'))->format('Y-m-d');
+                     $tableMonth[$test] = [];
+                     if(array_key_exists($test, $tabSales)){
+                         array_push($tableMonth[$test],$tabSales[$start]);
+                     }
+
+                     $i++;
+                    }
+                    dump($tableMonth);
+                 dump($test);
                 $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
                 $countSalesDay = count($daySales);
                 
@@ -149,6 +171,27 @@ class SasController extends AbstractController
                         array_push($tabSales[$start],$value->getCreatedAt()->format('Y-m-d'));
                     }
                 }
+
+                $lastDay = $startDate->modify('last day of this month')->setTime(23, 59, 99);
+                $nbrDayMonth = $startDate->diff($lastDay)->format('%R%a days');
+                $i =0;
+                $str = str_replace("+","",$nbrDayMonth);
+                $str1 = str_replace(" ","",$str);
+                $str3 = str_replace("days","",$str1);
+                $nbrDay =  intval($str3);
+                dump(intval($str3),$nbrDayMonth);
+                $tableMonth = [];
+                while($i < $nbrDay){
+                     $test = $startDate->add(new DateInterval('P'.$i.'D'))->format('Y-m-d');
+                     $tableMonth[$test] = [];
+                     if(array_key_exists($test, $tabSales)){
+                         array_push($tableMonth[$test],$tabSales[$start]);
+                     }
+
+                     $i++;
+                    }
+                    dump($tableMonth);
+                 dump($test);
                 $daySales = $doctrine->getRepository(Sales::class)->salesByDay($id,$dateSearch);
                 $countSalesDay = count($daySales);
                 
